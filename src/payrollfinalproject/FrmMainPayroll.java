@@ -41,6 +41,8 @@ public class FrmMainPayroll extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        robby = new javax.swing.JPanel();
+        henry = new javax.swing.JPanel();
         main = new javax.swing.JPanel();
         txtID = new javax.swing.JTextField();
         btnVerify = new javax.swing.JButton();
@@ -96,6 +98,32 @@ public class FrmMainPayroll extends javax.swing.JFrame {
 
         jPanel1.setOpaque(false);
         jPanel1.setLayout(new java.awt.CardLayout());
+
+        javax.swing.GroupLayout robbyLayout = new javax.swing.GroupLayout(robby);
+        robby.setLayout(robbyLayout);
+        robbyLayout.setHorizontalGroup(
+            robbyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1600, Short.MAX_VALUE)
+        );
+        robbyLayout.setVerticalGroup(
+            robbyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 900, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(robby, "card5");
+
+        javax.swing.GroupLayout henryLayout = new javax.swing.GroupLayout(henry);
+        henry.setLayout(henryLayout);
+        henryLayout.setHorizontalGroup(
+            henryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1600, Short.MAX_VALUE)
+        );
+        henryLayout.setVerticalGroup(
+            henryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 900, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(henry, "card6");
 
         main.setOpaque(false);
         main.setLayout(null);
@@ -567,6 +595,7 @@ public class FrmMainPayroll extends javax.swing.JFrame {
     private javax.swing.JPanel department;
     private javax.swing.JPanel employee;
     private javax.swing.JPanel empty;
+    private javax.swing.JPanel henry;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -599,6 +628,7 @@ public class FrmMainPayroll extends javax.swing.JFrame {
     private javax.swing.JLabel lblNameTransaction;
     private javax.swing.JLabel lblPositionTransaction;
     private javax.swing.JPanel main;
+    private javax.swing.JPanel robby;
     private javax.swing.JPanel transaction;
     private javax.swing.JTextField txtID;
     private javax.swing.JPanel user;
