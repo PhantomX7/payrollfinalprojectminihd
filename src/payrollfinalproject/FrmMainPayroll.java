@@ -46,23 +46,6 @@ public class FrmMainPayroll extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        robby = new javax.swing.JPanel();
-        btnNewBank = new javax.swing.JButton();
-        btnUpdateBank = new javax.swing.JButton();
-        btnDelete = new javax.swing.JButton();
-        btnNewBank3 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblBank = new javax.swing.JTable();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        txtIdBank = new javax.swing.JTextField();
-        txtNamaBank = new javax.swing.JTextField();
-        txtCabangBank = new javax.swing.JTextField();
-        txtAlamatBank = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
-        henry = new javax.swing.JPanel();
         main = new javax.swing.JPanel();
         txtID = new javax.swing.JTextField();
         btnVerify = new javax.swing.JButton();
@@ -70,11 +53,6 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         admin = new javax.swing.JPanel();
         btnEmployee = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        employee = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
         transaction = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         createTransaction1 = new javax.swing.JPanel();
@@ -98,18 +76,44 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         viewTransaction = new javax.swing.JPanel();
         jButton9 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        empty = new javax.swing.JPanel();
         bank = new javax.swing.JPanel();
+        btnNewBank = new javax.swing.JButton();
+        btnUpdateBank1 = new javax.swing.JButton();
+        btnDelete1 = new javax.swing.JButton();
+        btnNewBank4 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblBank = new javax.swing.JTable();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        txtIdBank = new javax.swing.JTextField();
+        txtNamaBank = new javax.swing.JTextField();
+        txtCabangBank = new javax.swing.JTextField();
+        txtAlamatBank = new javax.swing.JTextField();
+        employee = new javax.swing.JPanel();
+        btnNewEmployee = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jButton10 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        txtIdKaryawan = new javax.swing.JTextField();
+        txtNik = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        empty = new javax.swing.JPanel();
         department = new javax.swing.JPanel();
         jButton8 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         btnDepartment = new javax.swing.JButton();
         btnBank = new javax.swing.JButton();
         btnTransaction = new javax.swing.JButton();
+        lblBackground = new javax.swing.JLabel();
         user = new javax.swing.JPanel();
         jButton5 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
+        henry = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setUndecorated(true);
@@ -118,157 +122,6 @@ public class FrmMainPayroll extends javax.swing.JFrame {
 
         jPanel1.setOpaque(false);
         jPanel1.setLayout(new java.awt.CardLayout());
-
-        btnNewBank.setText("Add");
-        btnNewBank.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNewBankActionPerformed(evt);
-            }
-        });
-
-        btnUpdateBank.setText("Update");
-        btnUpdateBank.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateBankActionPerformed(evt);
-            }
-        });
-
-        btnDelete.setText("Delete");
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
-            }
-        });
-
-        btnNewBank3.setText("Save to Database");
-
-        tblBank.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ID Bank", "Bank", "Cabang Bank", "Alamat"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(tblBank);
-
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel3.setText("Nama Bank :");
-
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel4.setText("ID Bank :");
-
-        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel16.setText("Cabang Bank :");
-
-        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel17.setText("Alamat :");
-
-        jButton3.setText("Bank");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout robbyLayout = new javax.swing.GroupLayout(robby);
-        robby.setLayout(robbyLayout);
-        robbyLayout.setHorizontalGroup(
-            robbyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(robbyLayout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addComponent(jButton3)
-                .addGap(67, 67, 67)
-                .addGroup(robbyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(robbyLayout.createSequentialGroup()
-                        .addComponent(btnNewBank)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnUpdateBank)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnDelete)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnNewBank3))
-                    .addGroup(robbyLayout.createSequentialGroup()
-                        .addGroup(robbyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(robbyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(robbyLayout.createSequentialGroup()
-                                .addComponent(txtNamaBank, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel17))
-                            .addGroup(robbyLayout.createSequentialGroup()
-                                .addComponent(txtIdBank, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel16)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(robbyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtAlamatBank, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
-                            .addComponent(txtCabangBank)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE))
-                .addContainerGap(896, Short.MAX_VALUE))
-        );
-        robbyLayout.setVerticalGroup(
-            robbyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(robbyLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(robbyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnNewBank, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnUpdateBank, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnNewBank3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50)
-                .addGroup(robbyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel16)
-                    .addComponent(txtIdBank, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCabangBank, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(robbyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel17)
-                    .addComponent(txtNamaBank, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtAlamatBank, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(robbyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(robbyLayout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(robbyLayout.createSequentialGroup()
-                        .addGap(166, 166, 166)
-                        .addComponent(jButton3)))
-                .addContainerGap(450, Short.MAX_VALUE))
-        );
-
-        jPanel1.add(robby, "card5");
-
-        javax.swing.GroupLayout henryLayout = new javax.swing.GroupLayout(henry);
-        henry.setLayout(henryLayout);
-        henryLayout.setHorizontalGroup(
-            henryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1600, Short.MAX_VALUE)
-        );
-        henryLayout.setVerticalGroup(
-            henryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 900, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(henry, "card6");
 
         main.setOpaque(false);
         main.setLayout(null);
@@ -303,58 +156,25 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         admin.setOpaque(false);
         admin.setLayout(null);
 
-        btnEmployee.setText("Employee");
+        btnEmployee.setContentAreaFilled(false);
         btnEmployee.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEmployeeActionPerformed(evt);
             }
         });
         admin.add(btnEmployee);
-        btnEmployee.setBounds(80, 400, 90, 26);
+        btnEmployee.setBounds(110, 400, 120, 100);
 
         jPanel2.setOpaque(false);
-        jPanel2.setLayout(null);
+        jPanel2.setLayout(new java.awt.CardLayout());
 
-        employee.setLayout(null);
-
-        jButton2.setText("Register new employee");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        employee.add(jButton2);
-        jButton2.setBounds(30, 50, 160, 26);
-
-        jPanel3.setOpaque(false);
-        jPanel3.setLayout(null);
-        employee.add(jPanel3);
-        jPanel3.setBounds(0, 150, 1350, 750);
-
-        jButton10.setText("Edit employee data");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
-            }
-        });
-        employee.add(jButton10);
-        jButton10.setBounds(260, 50, 130, 26);
-
-        jButton11.setText("delete Employee");
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
-            }
-        });
-        employee.add(jButton11);
-        jButton11.setBounds(460, 50, 160, 26);
-
-        jPanel2.add(employee);
-        employee.setBounds(0, 0, 1350, 900);
-
+        transaction.setOpaque(false);
         transaction.setLayout(null);
 
+        jPanel4.setOpaque(false);
         jPanel4.setLayout(new java.awt.CardLayout());
+
+        createTransaction1.setOpaque(false);
 
         jLabel5.setText("Employee ID");
 
@@ -380,6 +200,8 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         );
 
         jPanel4.add(createTransaction1, "card2");
+
+        createTransaction2.setOpaque(false);
 
         jLabel6.setText("Name:");
 
@@ -468,6 +290,8 @@ public class FrmMainPayroll extends javax.swing.JFrame {
 
         jPanel4.add(createTransaction2, "card4");
 
+        viewTransaction.setOpaque(false);
+
         javax.swing.GroupLayout viewTransactionLayout = new javax.swing.GroupLayout(viewTransaction);
         viewTransaction.setLayout(viewTransactionLayout);
         viewTransactionLayout.setHorizontalGroup(
@@ -486,80 +310,319 @@ public class FrmMainPayroll extends javax.swing.JFrame {
 
         jButton9.setText("new Transaction");
         transaction.add(jButton9);
-        jButton9.setBounds(130, 80, 130, 26);
+        jButton9.setBounds(130, 23, 80, 90);
 
         jButton1.setText("view transaction");
         transaction.add(jButton1);
-        jButton1.setBounds(400, 80, 150, 26);
+        jButton1.setBounds(440, 23, 90, 90);
 
-        jPanel2.add(transaction);
-        transaction.setBounds(0, 0, 1350, 900);
+        jPanel2.add(transaction, "card3");
 
-        empty.setLayout(null);
-        jPanel2.add(empty);
-        empty.setBounds(0, 0, 1350, 900);
+        bank.setOpaque(false);
+
+        btnNewBank.setContentAreaFilled(false);
+        btnNewBank.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNewBankActionPerformed(evt);
+            }
+        });
+
+        btnUpdateBank1.setContentAreaFilled(false);
+        btnUpdateBank1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateBank1ActionPerformed(evt);
+            }
+        });
+
+        btnDelete1.setContentAreaFilled(false);
+        btnDelete1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDelete1ActionPerformed(evt);
+            }
+        });
+
+        btnNewBank4.setContentAreaFilled(false);
+
+        tblBank.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID Bank", "Bank", "Cabang Bank", "Alamat"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tblBank);
+
+        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel18.setText("Nama Bank :");
+
+        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel19.setText("ID Bank :");
+
+        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel20.setText("Cabang Bank :");
+
+        jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel21.setText("Alamat :");
 
         javax.swing.GroupLayout bankLayout = new javax.swing.GroupLayout(bank);
         bank.setLayout(bankLayout);
         bankLayout.setHorizontalGroup(
             bankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1350, Short.MAX_VALUE)
+            .addGroup(bankLayout.createSequentialGroup()
+                .addGroup(bankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(bankLayout.createSequentialGroup()
+                        .addGap(174, 174, 174)
+                        .addGroup(bankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel19)
+                            .addComponent(jLabel18))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(bankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(bankLayout.createSequentialGroup()
+                                .addComponent(txtNamaBank, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel21))
+                            .addGroup(bankLayout.createSequentialGroup()
+                                .addComponent(txtIdBank, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel20)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(bankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtAlamatBank, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+                            .addComponent(txtCabangBank)))
+                    .addGroup(bankLayout.createSequentialGroup()
+                        .addGap(155, 155, 155)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(bankLayout.createSequentialGroup()
+                .addGap(125, 125, 125)
+                .addComponent(btnNewBank, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(244, 244, 244)
+                .addComponent(btnUpdateBank1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 233, Short.MAX_VALUE)
+                .addComponent(btnDelete1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(260, 260, 260)
+                .addComponent(btnNewBank4, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(101, 101, 101))
         );
         bankLayout.setVerticalGroup(
             bankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 900, Short.MAX_VALUE)
+            .addGroup(bankLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(bankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(bankLayout.createSequentialGroup()
+                        .addGroup(bankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnUpdateBank1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnNewBank, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(148, 148, 148)
+                        .addGroup(bankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel19)
+                            .addComponent(jLabel20)
+                            .addComponent(txtIdBank, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCabangBank, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(bankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel18)
+                            .addComponent(jLabel21)
+                            .addComponent(txtNamaBank, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtAlamatBank, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 217, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(126, 126, 126))
+                    .addGroup(bankLayout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addGroup(bankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnDelete1, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                            .addComponent(btnNewBank4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
-        jPanel2.add(bank);
-        bank.setBounds(0, 0, 1350, 900);
+        jPanel2.add(bank, "card5");
 
+        employee.setOpaque(false);
+
+        btnNewEmployee.setText("Register new employee");
+        btnNewEmployee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNewEmployeeActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("ID karyawan");
+
+        jButton10.setText("Edit employee data");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+
+        jButton11.setText("delete Employee");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID Karyawan", "Nama"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(jTable2);
+        if (jTable2.getColumnModel().getColumnCount() > 0) {
+            jTable2.getColumnModel().getColumn(0).setResizable(false);
+            jTable2.getColumnModel().getColumn(0).setPreferredWidth(1);
+            jTable2.getColumnModel().getColumn(1).setResizable(false);
+            jTable2.getColumnModel().getColumn(1).setPreferredWidth(60);
+        }
+
+        jLabel3.setText("NIK");
+
+        javax.swing.GroupLayout employeeLayout = new javax.swing.GroupLayout(employee);
+        employee.setLayout(employeeLayout);
+        employeeLayout.setHorizontalGroup(
+            employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(employeeLayout.createSequentialGroup()
+                .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(employeeLayout.createSequentialGroup()
+                        .addGap(129, 129, 129)
+                        .addComponent(btnNewEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(246, 246, 246)
+                        .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(227, 227, 227)
+                        .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(employeeLayout.createSequentialGroup()
+                        .addGap(172, 172, 172)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(63, 63, 63)
+                        .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)
+                        .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtIdKaryawan, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNik, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(446, Short.MAX_VALUE))
+        );
+        employeeLayout.setVerticalGroup(
+            employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(employeeLayout.createSequentialGroup()
+                .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(employeeLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(btnNewEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(employeeLayout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(employeeLayout.createSequentialGroup()
+                        .addGap(98, 98, 98)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(employeeLayout.createSequentialGroup()
+                        .addGap(107, 107, 107)
+                        .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(txtIdKaryawan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtNik, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))))
+                .addContainerGap())
+        );
+
+        jPanel2.add(employee, "card2");
+
+        empty.setOpaque(false);
+        empty.setLayout(null);
+        jPanel2.add(empty, "card4");
+
+        department.setOpaque(false);
         department.setLayout(null);
 
         jButton8.setText("new department");
         department.add(jButton8);
-        jButton8.setBounds(30, 50, 120, 26);
+        jButton8.setBounds(110, 30, 120, 50);
 
-        jPanel2.add(department);
-        department.setBounds(0, 0, 1350, 900);
+        jPanel2.add(department, "card6");
 
         admin.add(jPanel2);
-        jPanel2.setBounds(250, 0, 1350, 900);
+        jPanel2.setBounds(320, 0, 1280, 900);
 
-        jButton7.setText("back");
+        jButton7.setContentAreaFilled(false);
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
             }
         });
         admin.add(jButton7);
-        jButton7.setBounds(80, 830, 73, 26);
+        jButton7.setBounds(134, 33, 80, 80);
 
-        btnDepartment.setText("Department");
+        btnDepartment.setContentAreaFilled(false);
         btnDepartment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDepartmentActionPerformed(evt);
             }
         });
         admin.add(btnDepartment);
-        btnDepartment.setBounds(80, 460, 101, 26);
+        btnDepartment.setBounds(109, 543, 110, 110);
 
-        btnBank.setText("Bank");
+        btnBank.setContentAreaFilled(false);
         btnBank.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBankActionPerformed(evt);
             }
         });
         admin.add(btnBank);
-        btnBank.setBounds(80, 520, 90, 26);
+        btnBank.setBounds(110, 690, 110, 100);
 
-        btnTransaction.setText("Transaction");
+        btnTransaction.setContentAreaFilled(false);
         btnTransaction.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTransactionActionPerformed(evt);
             }
         });
         admin.add(btnTransaction);
-        btnTransaction.setBounds(80, 340, 102, 26);
+        btnTransaction.setBounds(110, 250, 130, 120);
+
+        lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/payroll1.jpg"))); // NOI18N
+        admin.add(lblBackground);
+        lblBackground.setBounds(0, 0, 1600, 900);
 
         jPanel1.add(admin, "card3");
 
@@ -607,6 +670,19 @@ public class FrmMainPayroll extends javax.swing.JFrame {
 
         jPanel1.add(user, "card2");
 
+        javax.swing.GroupLayout henryLayout = new javax.swing.GroupLayout(henry);
+        henry.setLayout(henryLayout);
+        henryLayout.setHorizontalGroup(
+            henryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1600, Short.MAX_VALUE)
+        );
+        henryLayout.setVerticalGroup(
+            henryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 900, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(henry, "card6");
+
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 1600, 900);
 
@@ -630,9 +706,9 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         changeMainLayout(main);
     }//GEN-LAST:event_jButton7ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnNewEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewEmployeeActionPerformed
 
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnNewEmployeeActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
 
@@ -644,41 +720,35 @@ public class FrmMainPayroll extends javax.swing.JFrame {
 
     private void btnDepartmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDepartmentActionPerformed
         changeMainSubLayout(department);
+        changeTransactionImage(false);
     }//GEN-LAST:event_btnDepartmentActionPerformed
 
     private void btnEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeeActionPerformed
         changeMainSubLayout(employee);
+        changeTransactionImage(false);
     }//GEN-LAST:event_btnEmployeeActionPerformed
 
     private void btnBankActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBankActionPerformed
-        // TODO add your handling code here:
+        changeMainSubLayout(bank);
+        changeTransactionImage(false);
     }//GEN-LAST:event_btnBankActionPerformed
 
     private void btnTransactionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransactionActionPerformed
-        changeMainLayout(transaction);
+        changeMainSubLayout(transaction);
+        changeTransactionImage(true);
     }//GEN-LAST:event_btnTransactionActionPerformed
 
     private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIDActionPerformed
 
-    private void btnNewBankActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewBankActionPerformed
-        // TODO add your handling code here:
-        DefaultTableModel tableModel = (DefaultTableModel) tblBank.getModel();
-//        int i = tableModel.getRowCount() + 1;
-
-        Object data[] = {txtIdBank.getText(),
-            txtNamaBank.getText().toUpperCase(),
-            txtCabangBank.getText(),
-            txtAlamatBank.getText(),};
-        tableModel.addRow(data);
-
-        txtIdBank.setText("");
-        txtNamaBank.setText("");
-        txtCabangBank.setText("");
-        txtAlamatBank.setText("");
-
-    }//GEN-LAST:event_btnNewBankActionPerformed
+    private void changeTransactionImage(boolean b) {
+        if (b == true) {
+            lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/payroll2.jpg")));
+        } else {
+            lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/payroll1.jpg")));
+        }
+    }
 
     private void banklistener() {
         ListSelectionListener listener = new ListSelectionListener() {
@@ -695,35 +765,45 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         tblBank.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         tblBank.getSelectionModel().addListSelectionListener(listener);
     }
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-//        DefaultTableModel tableModel = (DefaultTableModel) tblBank.getModel();
+    private void btnNewBankActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewBankActionPerformed
+        DefaultTableModel tableModel = (DefaultTableModel) tblBank.getModel();
 //        int i = tableModel.getRowCount() + 1;
-//        txtIdBank.setText(Integer.toString(i));
-    }//GEN-LAST:event_jButton3ActionPerformed
+        if (!txtNamaBank.getText().trim().isEmpty() && !txtIdBank.getText().trim().isEmpty() && !txtCabangBank.getText().trim().isEmpty() && !txtAlamatBank.getText().trim().isEmpty()) {
 
-    private void btnUpdateBankActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateBankActionPerformed
-        // TODO add your handling code here:
-        banklistener();
-        int row = tblBank.getSelectedRow();
-        if (tblBank.getSelectedRow() >= 0) {
-            DefaultTableModel tableModel = (DefaultTableModel) tblBank.getModel();
-            tableModel.setValueAt(txtIdBank.getText(), row, 0);
-            tableModel.setValueAt(txtNamaBank.getText().toUpperCase(), row, 1);
-            tableModel.setValueAt(txtCabangBank, row, 2);
-            tableModel.setValueAt(txtAlamatBank, row, 3);
+            Object data[] = {txtIdBank.getText(),
+                txtNamaBank.getText().toUpperCase(),
+                txtCabangBank.getText(),
+                txtAlamatBank.getText()};
+            tableModel.addRow(data);
+
             txtIdBank.setText("");
             txtNamaBank.setText("");
             txtCabangBank.setText("");
             txtAlamatBank.setText("");
+        }
+    }//GEN-LAST:event_btnNewBankActionPerformed
+
+    private void btnUpdateBank1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateBank1ActionPerformed
+        int row = tblBank.getSelectedRow();
+        if (tblBank.getSelectedRow() >= 0) {
+            if (!txtNamaBank.getText().trim().isEmpty() && !txtIdBank.getText().trim().isEmpty() && !txtCabangBank.getText().trim().isEmpty() && !txtAlamatBank.getText().trim().isEmpty()) {
+                DefaultTableModel tableModel = (DefaultTableModel) tblBank.getModel();
+                tableModel.setValueAt(txtIdBank.getText(), row, 0);
+                tableModel.setValueAt(txtNamaBank.getText().toUpperCase(), row, 1);
+                tableModel.setValueAt(txtCabangBank, row, 2);
+                tableModel.setValueAt(txtAlamatBank, row, 3);
+                txtIdBank.setText("");
+                txtNamaBank.setText("");
+                txtCabangBank.setText("");
+                txtAlamatBank.setText("");
+            }
 
         } else {
             JOptionPane.showMessageDialog(this, "Please select the data", "App Information", 1);
         }
-    }//GEN-LAST:event_btnUpdateBankActionPerformed
+    }//GEN-LAST:event_btnUpdateBank1ActionPerformed
 
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
+    private void btnDelete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelete1ActionPerformed
         int row = tblBank.getSelectedRow();
         DefaultTableModel tableModel = (DefaultTableModel) tblBank.getModel();
         if (tblBank.getSelectedRow() >= 0) {
@@ -732,7 +812,7 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Please select the data", "App Information", 1);
         }
-    }//GEN-LAST:event_btnDeleteActionPerformed
+    }//GEN-LAST:event_btnDelete1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -790,27 +870,19 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         jPanel2.revalidate();
     }
 
-    private void changeEmployeeLayout(Component comp) {
-        jPanel3.removeAll();
-        jPanel3.repaint();
-        jPanel3.revalidate();
-
-        jPanel3.add(comp);
-        jPanel3.repaint();
-        jPanel3.revalidate();
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel admin;
     private javax.swing.JPanel bank;
     private javax.swing.JButton btnBank;
-    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnDelete1;
     private javax.swing.JButton btnDepartment;
     private javax.swing.JButton btnEmployee;
     private javax.swing.JButton btnNewBank;
-    private javax.swing.JButton btnNewBank3;
+    private javax.swing.JButton btnNewBank4;
+    private javax.swing.JButton btnNewEmployee;
     private javax.swing.JButton btnTransaction;
-    private javax.swing.JButton btnUpdateBank;
+    private javax.swing.JButton btnUpdateBank1;
     private javax.swing.JButton btnVerify;
     private javax.swing.JPanel createTransaction1;
     private javax.swing.JPanel createTransaction2;
@@ -821,8 +893,6 @@ public class FrmMainPayroll extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
@@ -835,10 +905,12 @@ public class FrmMainPayroll extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -846,24 +918,27 @@ public class FrmMainPayroll extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JLabel lblBackground;
     private javax.swing.JLabel lblDepartmentTransaction;
     private javax.swing.JLabel lblNameTransaction;
     private javax.swing.JLabel lblPositionTransaction;
     private javax.swing.JPanel main;
-    private javax.swing.JPanel robby;
     private javax.swing.JTable tblBank;
     private javax.swing.JPanel transaction;
     private javax.swing.JTextField txtAlamatBank;
     private javax.swing.JTextField txtCabangBank;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtIdBank;
+    private javax.swing.JTextField txtIdKaryawan;
     private javax.swing.JTextField txtNamaBank;
+    private javax.swing.JTextField txtNik;
     private javax.swing.JPanel user;
     private javax.swing.JPanel viewTransaction;
     // End of variables declaration//GEN-END:variables
