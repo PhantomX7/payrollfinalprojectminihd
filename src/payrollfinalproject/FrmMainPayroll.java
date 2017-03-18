@@ -42,11 +42,17 @@ public class FrmMainPayroll extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         main = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        txtID = new javax.swing.JTextField();
+        btnVerify = new javax.swing.JButton();
+        jLabel15 = new javax.swing.JLabel();
         admin = new javax.swing.JPanel();
         btnEmployee = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        employee = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jButton10 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
         transaction = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         createTransaction1 = new javax.swing.JPanel();
@@ -70,17 +76,6 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         viewTransaction = new javax.swing.JPanel();
         jButton9 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        employee = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        registerEmp = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        deleteEmp = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        editEmp = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
         empty = new javax.swing.JPanel();
         bank = new javax.swing.JPanel();
         department = new javax.swing.JPanel();
@@ -94,7 +89,7 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setUndecorated(true);
         setPreferredSize(new java.awt.Dimension(1600, 900));
         getContentPane().setLayout(null);
@@ -105,23 +100,30 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         main.setOpaque(false);
         main.setLayout(null);
 
-        jButton3.setText("go to user");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        txtID.setFont(new java.awt.Font("Calibri", 1, 48)); // NOI18N
+        txtID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtID.setBorder(null);
+        txtID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                txtIDActionPerformed(evt);
             }
         });
-        main.add(jButton3);
-        jButton3.setBounds(300, 450, 100, 23);
+        main.add(txtID);
+        txtID.setBounds(990, 410, 390, 50);
 
-        jButton4.setText("go to admin");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnVerify.setBorder(null);
+        btnVerify.setContentAreaFilled(false);
+        btnVerify.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnVerifyActionPerformed(evt);
             }
         });
-        main.add(jButton4);
-        jButton4.setBounds(640, 450, 110, 23);
+        main.add(btnVerify);
+        btnVerify.setBounds(1053, 560, 285, 60);
+
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/payroll3.jpg"))); // NOI18N
+        main.add(jLabel15);
+        jLabel15.setBounds(0, 0, 1600, 900);
 
         jPanel1.add(main, "card4");
 
@@ -139,6 +141,43 @@ public class FrmMainPayroll extends javax.swing.JFrame {
 
         jPanel2.setOpaque(false);
         jPanel2.setLayout(null);
+
+        employee.setLayout(null);
+
+        jButton2.setText("Register new employee");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        employee.add(jButton2);
+        jButton2.setBounds(30, 50, 160, 23);
+
+        jPanel3.setOpaque(false);
+        jPanel3.setLayout(null);
+        employee.add(jPanel3);
+        jPanel3.setBounds(0, 150, 1350, 750);
+
+        jButton10.setText("Edit employee data");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+        employee.add(jButton10);
+        jButton10.setBounds(260, 50, 130, 23);
+
+        jButton11.setText("delete Employee");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+        employee.add(jButton11);
+        jButton11.setBounds(460, 50, 160, 23);
+
+        jPanel2.add(employee);
+        employee.setBounds(0, 0, 1350, 900);
 
         transaction.setLayout(null);
 
@@ -283,81 +322,6 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         jPanel2.add(transaction);
         transaction.setBounds(0, 0, 1350, 900);
 
-        employee.setLayout(null);
-
-        jButton2.setText("Register new employee");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        employee.add(jButton2);
-        jButton2.setBounds(30, 50, 160, 23);
-
-        jPanel3.setOpaque(false);
-        jPanel3.setLayout(new java.awt.CardLayout());
-
-        registerEmp.setLayout(null);
-
-        jLabel3.setText("register");
-        registerEmp.add(jLabel3);
-        jLabel3.setBounds(656, 5, 37, 14);
-
-        jPanel3.add(registerEmp, "card3");
-
-        deleteEmp.setLayout(null);
-
-        jLabel4.setText("delete");
-        deleteEmp.add(jLabel4);
-        jLabel4.setBounds(270, 140, 30, 14);
-
-        jPanel3.add(deleteEmp, "card4");
-
-        jLabel2.setText("Edit register");
-
-        javax.swing.GroupLayout editEmpLayout = new javax.swing.GroupLayout(editEmp);
-        editEmp.setLayout(editEmpLayout);
-        editEmpLayout.setHorizontalGroup(
-            editEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(editEmpLayout.createSequentialGroup()
-                .addGap(251, 251, 251)
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        editEmpLayout.setVerticalGroup(
-            editEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(editEmpLayout.createSequentialGroup()
-                .addGap(78, 78, 78)
-                .addComponent(jLabel2)
-                .addContainerGap(658, Short.MAX_VALUE))
-        );
-
-        jPanel3.add(editEmp, "card2");
-
-        employee.add(jPanel3);
-        jPanel3.setBounds(0, 150, 1350, 750);
-
-        jButton10.setText("Edit employee data");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
-            }
-        });
-        employee.add(jButton10);
-        jButton10.setBounds(260, 50, 130, 23);
-
-        jButton11.setText("delete Employee");
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
-            }
-        });
-        employee.add(jButton11);
-        jButton11.setBounds(460, 50, 160, 23);
-
-        jPanel2.add(employee);
-        employee.setBounds(0, 0, 1350, 900);
-
         empty.setLayout(null);
         jPanel2.add(empty);
         empty.setBounds(0, 0, 1350, 900);
@@ -416,6 +380,11 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         btnBank.setBounds(80, 520, 90, 23);
 
         btnTransaction.setText("Transaction");
+        btnTransaction.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTransactionActionPerformed(evt);
+            }
+        });
         admin.add(btnTransaction);
         btnTransaction.setBounds(80, 340, 89, 23);
 
@@ -471,14 +440,14 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        changeMainLayout(user);
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        changeMainLayout(admin);
-        changeMainSubLayout(empty);
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void btnVerifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerifyActionPerformed
+        if (txtID.getText().equals("exit")) {
+            System.exit(0);
+        }
+        if (txtID.getText().equals("admin")) {
+            changeMainLayout(admin);
+        }
+    }//GEN-LAST:event_btnVerifyActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         changeMainLayout(main);
@@ -489,15 +458,15 @@ public class FrmMainPayroll extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        changeEmployeeLayout(registerEmp);
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        changeEmployeeLayout(editEmp);
+        
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        changeEmployeeLayout(deleteEmp);
+        
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void btnDepartmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDepartmentActionPerformed
@@ -511,6 +480,14 @@ public class FrmMainPayroll extends javax.swing.JFrame {
     private void btnBankActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBankActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBankActionPerformed
+
+    private void btnTransactionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransactionActionPerformed
+        changeMainLayout(transaction);
+    }//GEN-LAST:event_btnTransactionActionPerformed
+
+    private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIDActionPerformed
 
     /**
      * @param args the command line arguments
@@ -584,19 +561,16 @@ public class FrmMainPayroll extends javax.swing.JFrame {
     private javax.swing.JButton btnDepartment;
     private javax.swing.JButton btnEmployee;
     private javax.swing.JButton btnTransaction;
+    private javax.swing.JButton btnVerify;
     private javax.swing.JPanel createTransaction1;
     private javax.swing.JPanel createTransaction2;
-    private javax.swing.JPanel deleteEmp;
     private javax.swing.JPanel department;
-    private javax.swing.JPanel editEmp;
     private javax.swing.JPanel employee;
     private javax.swing.JPanel empty;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
@@ -608,9 +582,7 @@ public class FrmMainPayroll extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -627,8 +599,8 @@ public class FrmMainPayroll extends javax.swing.JFrame {
     private javax.swing.JLabel lblNameTransaction;
     private javax.swing.JLabel lblPositionTransaction;
     private javax.swing.JPanel main;
-    private javax.swing.JPanel registerEmp;
     private javax.swing.JPanel transaction;
+    private javax.swing.JTextField txtID;
     private javax.swing.JPanel user;
     private javax.swing.JPanel viewTransaction;
     // End of variables declaration//GEN-END:variables
