@@ -97,7 +97,9 @@ public class FrmMainPayroll extends javax.swing.JFrame {
             Object data[] = {employeeList.get(i).getId(), employeeList.get(i).getName()};
             tableModel.addRow(data);
         }
-
+        
+        //generate
+        generateDepartmenCboItem();
     }
 
     private void generateDepartmenCboItem() {
@@ -105,7 +107,7 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         try {
             myConn = DriverManager.getConnection(DbConn.JDBC_URL, DbConn.JDBC_USERNAME, DbConn.JDBC_PASSWORD);
             // Prepare statement
-            myStmt = myConn.prepareStatement("select * from department");
+            myStmt = myConn.prepareStatement("select * from departments");
 
             // Execute SQL query
             myRs = myStmt.executeQuery();
@@ -788,34 +790,38 @@ public class FrmMainPayroll extends javax.swing.JFrame {
                     .addComponent(jLabel29)
                     .addComponent(jLabel30))
                 .addGap(18, 18, 18)
-                .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtEmployeeID, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEmployeeName)
-                    .addComponent(txtEmployeeNik)
-                    .addComponent(txtEmployeeTempatLahir)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
-                    .addComponent(txtEmployeeNoHP)
-                    .addComponent(txtEmployeeEmail)
-                    .addComponent(cboEmployeeStatusPerkawinan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cboEmployeeAgama, 0, 171, Short.MAX_VALUE)
-                    .addComponent(cboEmployeeStatusPajak, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cboEmployeeIdDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cboEmployeeTipeKaryawan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dateChooserCombo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cboEmployeeJenisKelamin, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 167, Short.MAX_VALUE)
                 .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel31, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel32, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel33, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel34, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(18, 18, 18)
-                .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtEmployeeTunjangan)
-                    .addComponent(txtEmployeeGajiKotor)
-                    .addComponent(cboEmployeeIdBank, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEmployeeNoBank, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE))
-                .addGap(119, 119, 119))
+                    .addGroup(employeeLayout.createSequentialGroup()
+                        .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtEmployeeID, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtEmployeeName)
+                            .addComponent(txtEmployeeNik)
+                            .addComponent(txtEmployeeTempatLahir)
+                            .addComponent(txtEmployeeNoHP)
+                            .addComponent(txtEmployeeEmail)
+                            .addComponent(cboEmployeeStatusPerkawinan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cboEmployeeAgama, 0, 171, Short.MAX_VALUE)
+                            .addComponent(cboEmployeeStatusPajak, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cboEmployeeIdDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cboEmployeeTipeKaryawan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dateChooserCombo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cboEmployeeJenisKelamin, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 167, Short.MAX_VALUE)
+                        .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel31, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel32, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel33, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel34, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(18, 18, 18)
+                        .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtEmployeeTunjangan)
+                            .addComponent(txtEmployeeGajiKotor)
+                            .addComponent(cboEmployeeIdBank, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtEmployeeNoBank, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE))
+                        .addGap(119, 119, 119))
+                    .addGroup(employeeLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         employeeLayout.setVerticalGroup(
             employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1227,18 +1233,22 @@ public class FrmMainPayroll extends javax.swing.JFrame {
                 txtDepartmentName.getText().toUpperCase()};
             DefaultTableModel tableModel = (DefaultTableModel) tblDepartment.getModel();
             tableModel.addRow(data);
-
+            txtDepartmentID.setText("");
+            txtDepartmentName.setText("");
         }
     }//GEN-LAST:event_btnDepartmentAddActionPerformed
 
     private void btnDepartmentDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDepartmentDeleteActionPerformed
         // TODO add your handling code here:
-        int departmentid = tblDepartment.getSelectedRow();
         int row = tblDepartment.getSelectedRow();
-        DefaultTableModel tableModel = (DefaultTableModel) tblDepartment.getModel();
-        tableModel.removeRow(row);
-        txtDepartmentID.setText("");
-        txtDepartmentName.setText("");
+        if (tblDepartment.getSelectedRow() >= 0) {
+            DefaultTableModel tableModel = (DefaultTableModel) tblDepartment.getModel();
+            tableModel.removeRow(row);
+            txtDepartmentID.setText("");
+            txtDepartmentName.setText("");
+        } else {
+            JOptionPane.showMessageDialog(this, "Please Select Data", "App Information", 1);
+        }
     }//GEN-LAST:event_btnDepartmentDeleteActionPerformed
 
     private void btnDepartmentUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDepartmentUpdateActionPerformed
