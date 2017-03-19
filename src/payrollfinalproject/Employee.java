@@ -11,7 +11,7 @@ package payrollfinalproject;
  */
 public class Employee {
 
-    private String id;
+    private Integer id;
     private String name;
     private String nik;
     private String jenisKelamin;
@@ -31,7 +31,9 @@ public class Employee {
     private String idBank;
     private String noRekening;
 
-    public Employee(String id, String name, String nik, String jenisKelamin, String tempatLahir, String tanggalLahir, String alamat, String noHp, String email, String agama, String status_perkawinan, String status_pajak, String id_department, String tipe_Karyawan, String tanggal_masuk, Double gaji_kotor, Double tunjangan, String idBank, String noRekening) {
+    public Employee(Integer id, String name, String nik, String jenisKelamin, String tempatLahir, 
+            String tanggalLahir, String alamat, String noHp, String email, String agama, String status_perkawinan,
+            String status_pajak, String id_department, String tipe_Karyawan, String tanggal_masuk, Double gaji_kotor, Double tunjangan, String idBank, String noRekening) {
         this.id = id;
         this.name = name;
         this.nik = nik;
@@ -53,11 +55,11 @@ public class Employee {
         this.noRekening = noRekening;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

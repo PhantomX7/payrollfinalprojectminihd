@@ -6,7 +6,6 @@
 package payrollfinalproject;
 
 import java.awt.Component;
-import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -64,7 +63,7 @@ public class FrmMainPayroll extends javax.swing.JFrame {
             // Process result set
             while (myRs.next()) {
                 row++;
-                String id = myRs.getString("id_karyawan");
+                Integer id = myRs.getInt("id_karyawan");
                 String name = myRs.getString("nama");
                 String nik = myRs.getString("nik");
                 String jenisKelamin = myRs.getString("jenis_kelamin");
@@ -97,9 +96,10 @@ public class FrmMainPayroll extends javax.swing.JFrame {
             Object data[] = {employeeList.get(i).getId(), employeeList.get(i).getName()};
             tableModel.addRow(data);
         }
-        
+
         //generate
         generateDepartmenCboItem();
+        generateBankCboItem();
     }
 
     private void generateDepartmenCboItem() {
@@ -124,6 +124,28 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         }
     }
 
+    private void generateBankCboItem() {
+        cboEmployeeIdBank.removeAllItems();
+        try {
+            myConn = DriverManager.getConnection(DbConn.JDBC_URL, DbConn.JDBC_USERNAME, DbConn.JDBC_PASSWORD);
+            // Prepare statement
+            myStmt = myConn.prepareStatement("select * from bank");
+
+            // Execute SQL query
+            myRs = myStmt.executeQuery();
+            ArrayList<String> bank = new ArrayList<>();
+            // Process result set
+            while (myRs.next()) {
+                bank.add(myRs.getString("bank"));
+            }
+            for (String a : bank) {
+                cboEmployeeIdBank.addItem(a);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(FrmMainPayroll.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     private void employeeListener() {
         ListSelectionListener listener = new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent e) {
@@ -135,9 +157,20 @@ public class FrmMainPayroll extends javax.swing.JFrame {
                     txtEmployeeNik.setText(employee.getNik());
                     cboEmployeeJenisKelamin.setSelectedItem(employee.getJenisKelamin());
                     txtEmployeeTempatLahir.setText(employee.getTempatLahir());
+                    txtEmployeeTangalLahir.setText(employee.getTanggalLahir());
                     txtEmployeeAlamat.setText(employee.getAlamat());
                     txtEmployeeNoHP.setText(employee.getNoHp());
                     txtEmployeeEmail.setText(employee.getEmail());
+                    cboEmployeeAgama.setSelectedItem(employee.getAgama());
+                    cboEmployeeStatusPerkawinan.setSelectedItem(employee.getStatus_perkawinan());
+                    cboEmployeeStatusPajak.setSelectedItem(employee.getStatus_pajak());
+                    cboEmployeeTipeKaryawan.setSelectedItem(employee.getTipe_Karyawan());
+                    cboEmployeeIdDepartment.setSelectedIndex((Integer.valueOf(employee.getId_department()) - 1));
+                    txtEmployeeTanggalMasuk.setText(employee.getTanggal_masuk());
+                    cboEmployeeIdBank.setSelectedIndex(Integer.valueOf(employee.getIdBank()) - 1);
+                    txtEmployeeGajiKotor.setText(String.valueOf(employee.getGaji_kotor()));
+                    txtEmployeeTunjangan.setText(employee.getTunjangan().toString());
+                    txtEmployeeNoRekening.setText(employee.getNoRekening());
 
                 }
             }
@@ -240,9 +273,9 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         txtCabangBank = new javax.swing.JTextField();
         txtAlamatBank = new javax.swing.JTextField();
         employee = new javax.swing.JPanel();
-        btnNewEmployee = new javax.swing.JButton();
+        btnEmployeeNew = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jButton10 = new javax.swing.JButton();
+        btnEmployeeUpdate = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblEmployee = new javax.swing.JTable();
@@ -272,7 +305,6 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         jLabel28 = new javax.swing.JLabel();
         cboEmployeeTipeKaryawan = new javax.swing.JComboBox<>();
         jLabel29 = new javax.swing.JLabel();
-        dateChooserCombo1 = new datechooser.beans.DateChooserCombo();
         jLabel30 = new javax.swing.JLabel();
         txtEmployeeGajiKotor = new javax.swing.JTextField();
         jLabel31 = new javax.swing.JLabel();
@@ -280,8 +312,12 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         jLabel32 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
         cboEmployeeIdBank = new javax.swing.JComboBox<>();
-        txtEmployeeNoBank = new javax.swing.JTextField();
+        txtEmployeeNoRekening = new javax.swing.JTextField();
         jLabel34 = new javax.swing.JLabel();
+        txtEmployeeTangalLahir = new javax.swing.JTextField();
+        jLabel35 = new javax.swing.JLabel();
+        txtEmployeeTanggalMasuk = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
         empty = new javax.swing.JPanel();
         department = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -644,19 +680,19 @@ public class FrmMainPayroll extends javax.swing.JFrame {
 
         employee.setOpaque(false);
 
-        btnNewEmployee.setText("Register new employee");
-        btnNewEmployee.addActionListener(new java.awt.event.ActionListener() {
+        btnEmployeeNew.setContentAreaFilled(false);
+        btnEmployeeNew.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNewEmployeeActionPerformed(evt);
+                btnEmployeeNewActionPerformed(evt);
             }
         });
 
         jLabel2.setText("ID karyawan");
 
-        jButton10.setText("Edit employee data");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        btnEmployeeUpdate.setContentAreaFilled(false);
+        btnEmployeeUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                btnEmployeeUpdateActionPerformed(evt);
             }
         });
 
@@ -728,7 +764,7 @@ public class FrmMainPayroll extends javax.swing.JFrame {
 
         jLabel25.setText("Agama");
 
-        cboEmployeeStatusPerkawinan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lajang", "Kawin" }));
+        cboEmployeeStatusPerkawinan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lajang", "Menikah" }));
 
         jLabel26.setText("Status Perkawinan");
 
@@ -744,8 +780,6 @@ public class FrmMainPayroll extends javax.swing.JFrame {
 
         jLabel29.setText("Tipe Karyawan");
 
-        dateChooserCombo1.setCalendarPreferredSize(new java.awt.Dimension(300, 300));
-
         jLabel30.setText("Tanggal Masuk");
 
         jLabel31.setText("Gaji Kotor");
@@ -756,7 +790,11 @@ public class FrmMainPayroll extends javax.swing.JFrame {
 
         cboEmployeeIdBank.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jLabel34.setText("No Bank");
+        jLabel34.setText("No Rekening");
+
+        jLabel35.setText("Tanggal Lahir");
+
+        jButton2.setText("jButton2");
 
         javax.swing.GroupLayout employeeLayout = new javax.swing.GroupLayout(employee);
         employee.setLayout(employeeLayout);
@@ -764,110 +802,138 @@ public class FrmMainPayroll extends javax.swing.JFrame {
             employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(employeeLayout.createSequentialGroup()
                 .addGap(129, 129, 129)
-                .addComponent(btnNewEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(246, 246, 246)
-                .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(227, 227, 227)
+                .addComponent(btnEmployeeNew, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(249, 249, 249)
+                .addComponent(btnEmployeeUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(230, 230, 230)
                 .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(98, 98, 98))
             .addGroup(employeeLayout.createSequentialGroup()
                 .addGap(172, 172, 172)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63)
-                .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel16)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel17)
-                    .addComponent(jLabel22)
-                    .addComponent(jLabel23)
-                    .addComponent(jLabel24)
-                    .addComponent(jLabel25)
-                    .addComponent(jLabel26)
-                    .addComponent(jLabel27)
-                    .addComponent(jLabel28)
-                    .addComponent(jLabel29)
-                    .addComponent(jLabel30))
-                .addGap(18, 18, 18)
                 .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(employeeLayout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel22)
+                            .addComponent(jLabel23)
+                            .addComponent(jLabel24)
+                            .addComponent(jLabel25)
+                            .addComponent(jLabel26)
+                            .addComponent(jLabel27)
+                            .addComponent(jLabel28)
+                            .addComponent(jLabel29))
+                        .addGap(18, 18, 18)
+                        .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtEmployeeNoHP)
+                                .addComponent(txtEmployeeEmail)
+                                .addComponent(cboEmployeeStatusPerkawinan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cboEmployeeAgama, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(cboEmployeeStatusPajak, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cboEmployeeTipeKaryawan, javax.swing.GroupLayout.Alignment.LEADING, 0, 90, Short.MAX_VALUE)
+                                    .addComponent(cboEmployeeIdDepartment, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, employeeLayout.createSequentialGroup()
+                        .addGap(90, 90, 90)
+                        .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel16)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel17)
+                            .addComponent(jLabel35))
+                        .addGap(18, 18, 18)
                         .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtEmployeeTangalLahir)
                             .addComponent(txtEmployeeID, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtEmployeeName)
                             .addComponent(txtEmployeeNik)
                             .addComponent(txtEmployeeTempatLahir)
-                            .addComponent(txtEmployeeNoHP)
-                            .addComponent(txtEmployeeEmail)
-                            .addComponent(cboEmployeeStatusPerkawinan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cboEmployeeAgama, 0, 171, Short.MAX_VALUE)
-                            .addComponent(cboEmployeeStatusPajak, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cboEmployeeIdDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cboEmployeeTipeKaryawan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dateChooserCombo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cboEmployeeJenisKelamin, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 167, Short.MAX_VALUE)
+                            .addComponent(cboEmployeeJenisKelamin, 0, 171, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 148, Short.MAX_VALUE)
                         .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel31, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel32, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel33, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel34, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(18, 18, 18)
-                        .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtEmployeeTunjangan)
-                            .addComponent(txtEmployeeGajiKotor)
-                            .addComponent(cboEmployeeIdBank, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtEmployeeNoBank, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE))
-                        .addGap(119, 119, 119))
-                    .addGroup(employeeLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, employeeLayout.createSequentialGroup()
+                                .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel31, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel32, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel33, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel34, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(18, 18, 18)
+                                .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtEmployeeTunjangan)
+                                    .addComponent(txtEmployeeGajiKotor)
+                                    .addComponent(txtEmployeeNoRekening, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
+                                    .addComponent(cboEmployeeIdBank, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, employeeLayout.createSequentialGroup()
+                                .addComponent(jLabel30)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtEmployeeTanggalMasuk, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(116, 116, 116))))
         );
         employeeLayout.setVerticalGroup(
             employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(employeeLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
                 .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(employeeLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(btnNewEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(employeeLayout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEmployeeNew, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(employeeLayout.createSequentialGroup()
+                            .addComponent(btnEmployeeUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGap(8, 8, 8))))
+                .addGap(92, 92, 92)
                 .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(employeeLayout.createSequentialGroup()
-                        .addGap(98, 98, 98)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(employeeLayout.createSequentialGroup()
-                        .addGap(107, 107, 107)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, employeeLayout.createSequentialGroup()
                         .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(txtEmployeeID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtEmployeeGajiKotor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel31))
+                            .addComponent(jLabel30)
+                            .addComponent(txtEmployeeTanggalMasuk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(employeeLayout.createSequentialGroup()
+                                .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtEmployeeName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel16))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtEmployeeNik, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel4)
+                                    .addComponent(cboEmployeeJenisKelamin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtEmployeeTempatLahir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel17)))
+                            .addGroup(employeeLayout.createSequentialGroup()
+                                .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtEmployeeGajiKotor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel31))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtEmployeeTunjangan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel32))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel33)
+                                    .addComponent(cboEmployeeIdBank, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtEmployeeNoRekening, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel34))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtEmployeeName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel16)
-                            .addComponent(txtEmployeeTunjangan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel32))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtEmployeeNik, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel33)
-                            .addComponent(cboEmployeeIdBank, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(cboEmployeeJenisKelamin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtEmployeeNoBank, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel34))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtEmployeeTempatLahir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel17))
+                            .addComponent(txtEmployeeTangalLahir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel35))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -899,12 +965,8 @@ public class FrmMainPayroll extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cboEmployeeTipeKaryawan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel29))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(dateChooserCombo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel30))))
-                .addContainerGap())
+                            .addComponent(jLabel29))))
+                .addContainerGap(204, Short.MAX_VALUE))
         );
 
         jPanel2.add(employee, "card2");
@@ -1133,13 +1195,143 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         changeMainLayout(main);
     }//GEN-LAST:event_jButton7ActionPerformed
 
-    private void btnNewEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewEmployeeActionPerformed
+    private void btnEmployeeNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeeNewActionPerformed
+        DefaultTableModel tableModel = (DefaultTableModel) tblEmployee.getModel();
+//        int i = tableModel.getRowCount() + 1;
+        if (!txtEmployeeID.getText().trim().isEmpty()
+                && !txtEmployeeName.getText().trim().isEmpty()
+                && !txtEmployeeNik.getText().trim().isEmpty()
+                && !txtEmployeeAlamat.getText().trim().isEmpty()
+                && !txtEmployeeEmail.getText().trim().isEmpty()
+                && !txtEmployeeGajiKotor.getText().trim().isEmpty()
+                && !txtEmployeeNoHP.getText().trim().isEmpty()
+                && !txtEmployeeNoRekening.getText().trim().isEmpty()
+                && !txtEmployeeTangalLahir.getText().trim().isEmpty()
+                && !txtEmployeeTanggalMasuk.getText().trim().isEmpty()
+                && !txtEmployeeTempatLahir.getText().trim().isEmpty()
+                && !txtEmployeeTunjangan.getText().trim().isEmpty()) {
 
-    }//GEN-LAST:event_btnNewEmployeeActionPerformed
+            Integer id = Integer.valueOf(txtEmployeeID.getText());
+            String name = txtEmployeeName.getText().toUpperCase();
+            String nik = txtEmployeeNik.getText();
+            String jenisKelamin = cboEmployeeJenisKelamin.getSelectedItem().toString();
+            String tempatLahir = txtEmployeeTempatLahir.getText().toUpperCase();
+            String tanggalLahir = txtEmployeeTangalLahir.getText();
+            String alamat = txtEmployeeAlamat.getText();
+            String noHp = txtEmployeeNoHP.getText();
+            String email = txtEmployeeEmail.getText();
+            String agama = cboEmployeeAgama.getSelectedItem().toString();
+            String status_perkawinan = cboEmployeeStatusPerkawinan.getSelectedItem().toString();
+            String status_pajak = cboEmployeeStatusPajak.getSelectedItem().toString();
+            String id_department = String.valueOf(cboEmployeeIdDepartment.getSelectedIndex() - 1);
+            String tipe_Karyawan = cboEmployeeTipeKaryawan.getSelectedItem().toString();
+            String tanggal_masuk = txtEmployeeTanggalMasuk.getText();
+            Double gaji_kotor = Double.valueOf(txtEmployeeGajiKotor.getText());
+            Double tunjangan = Double.valueOf(txtEmployeeTunjangan.getText());
+            String idBank = String.valueOf(cboEmployeeIdBank.getSelectedIndex() - 1);
+            String noRekening = txtEmployeeNoRekening.getText();
+            employeeList.add(new Employee(id, name, nik, jenisKelamin, tempatLahir, tanggalLahir, alamat, noHp, email, agama,
+                    status_perkawinan, status_pajak, id_department, tipe_Karyawan,
+                    tanggal_masuk, gaji_kotor, tunjangan, idBank, noRekening));
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+            Object data[] = {id, name};
+            tableModel.addRow(data);
 
-    }//GEN-LAST:event_jButton10ActionPerformed
+            txtEmployeeID.setText("");
+            txtEmployeeName.setText("");
+            txtEmployeeNik.setText("");
+            txtEmployeeTempatLahir.setText("");
+            txtEmployeeTangalLahir.setText("");
+            txtEmployeeAlamat.setText("");
+            txtEmployeeNoHP.setText("");
+            txtEmployeeEmail.setText("");
+            txtEmployeeTanggalMasuk.setText("");
+            txtEmployeeGajiKotor.setText("");
+            txtEmployeeTunjangan.setText("");
+            txtEmployeeNoRekening.setText("");
+        }
+    }//GEN-LAST:event_btnEmployeeNewActionPerformed
+
+    private void btnEmployeeUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeeUpdateActionPerformed
+        int row = tblEmployee.getSelectedRow();
+        if (tblEmployee.getSelectedRow() >= 0) {
+            if (!txtEmployeeID.getText().trim().isEmpty()
+                    && !txtEmployeeName.getText().trim().isEmpty()
+                    && !txtEmployeeNik.getText().trim().isEmpty()
+                    && !txtEmployeeAlamat.getText().trim().isEmpty()
+                    && !txtEmployeeEmail.getText().trim().isEmpty()
+                    && !txtEmployeeGajiKotor.getText().trim().isEmpty()
+                    && !txtEmployeeNoHP.getText().trim().isEmpty()
+                    && !txtEmployeeNoRekening.getText().trim().isEmpty()
+                    && !txtEmployeeTangalLahir.getText().trim().isEmpty()
+                    && !txtEmployeeTanggalMasuk.getText().trim().isEmpty()
+                    && !txtEmployeeTempatLahir.getText().trim().isEmpty()
+                    && !txtEmployeeTunjangan.getText().trim().isEmpty()) {
+
+                DefaultTableModel tableModel = (DefaultTableModel) tblEmployee.getModel();
+                Employee employee = employeeList.get(tblEmployee.getSelectedRow());
+
+                Integer id = Integer.valueOf(txtEmployeeID.getText());
+                String name = txtEmployeeName.getText().toUpperCase();
+                String nik = txtEmployeeNik.getText();
+                String jenisKelamin = cboEmployeeJenisKelamin.getSelectedItem().toString();
+                String tempatLahir = txtEmployeeTempatLahir.getText().toUpperCase();
+                String tanggalLahir = txtEmployeeTangalLahir.getText();
+                String alamat = txtEmployeeAlamat.getText();
+                String noHp = txtEmployeeNoHP.getText();
+                String email = txtEmployeeEmail.getText();
+                String agama = cboEmployeeAgama.getSelectedItem().toString();
+                String status_perkawinan = cboEmployeeStatusPerkawinan.getSelectedItem().toString();
+                String status_pajak = cboEmployeeStatusPajak.getSelectedItem().toString();
+                String id_department = String.valueOf(cboEmployeeIdDepartment.getSelectedIndex() + 1);
+                String tipe_Karyawan = cboEmployeeTipeKaryawan.getSelectedItem().toString();
+                String tanggal_masuk = txtEmployeeTanggalMasuk.getText();
+                Double gaji_kotor = Double.valueOf(txtEmployeeGajiKotor.getText());
+                Double tunjangan = Double.valueOf(txtEmployeeTunjangan.getText());
+                String idBank = String.valueOf(cboEmployeeIdBank.getSelectedIndex() + 1);
+                String noRekening = txtEmployeeNoRekening.getText();
+
+                employee.setId(id);
+                employee.setName(name);
+                employee.setNik(nik);
+                employee.setJenisKelamin(jenisKelamin);
+                employee.setTempatLahir(tempatLahir);
+                employee.setTanggalLahir(tanggalLahir);
+                employee.setAlamat(alamat);
+                employee.setNoHp(noHp);
+                employee.setEmail(email);
+                employee.setAgama(agama);
+                employee.setStatus_perkawinan(status_perkawinan);
+                employee.setStatus_pajak(status_pajak);
+                employee.setId_department(id_department);
+                employee.setTipe_Karyawan(tipe_Karyawan);
+                employee.setTanggal_masuk(tanggal_masuk);
+                employee.setGaji_kotor(gaji_kotor);
+                employee.setTunjangan(tunjangan);
+                employee.setIdBank(idBank);
+                employee.setNoRekening(noRekening);
+
+                tableModel.setValueAt(employee.getId(), row, 0);
+                tableModel.setValueAt(employee.getName(), row, 1);
+
+                txtEmployeeID.setText("");
+                txtEmployeeName.setText("");
+                txtEmployeeNik.setText("");
+                txtEmployeeTempatLahir.setText("");
+                txtEmployeeTangalLahir.setText("");
+                txtEmployeeAlamat.setText("");
+                txtEmployeeNoHP.setText("");
+                txtEmployeeEmail.setText("");
+                txtEmployeeTanggalMasuk.setText("");
+                txtEmployeeGajiKotor.setText("");
+                txtEmployeeTunjangan.setText("");
+                txtEmployeeNoRekening.setText("");
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Please select the data", "App Information", 1);
+        }
+    }//GEN-LAST:event_btnEmployeeUpdateActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
 
@@ -1338,9 +1530,10 @@ public class FrmMainPayroll extends javax.swing.JFrame {
     private javax.swing.JButton btnDepartmentDelete;
     private javax.swing.JButton btnDepartmentUpdate;
     private javax.swing.JButton btnEmployee;
+    private javax.swing.JButton btnEmployeeNew;
+    private javax.swing.JButton btnEmployeeUpdate;
     private javax.swing.JButton btnNewBank;
     private javax.swing.JButton btnNewBank4;
-    private javax.swing.JButton btnNewEmployee;
     private javax.swing.JButton btnTransaction;
     private javax.swing.JButton btnUpdateBank1;
     private javax.swing.JButton btnVerify;
@@ -1353,13 +1546,12 @@ public class FrmMainPayroll extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cboEmployeeTipeKaryawan;
     private javax.swing.JPanel createTransaction1;
     private javax.swing.JPanel createTransaction2;
-    private datechooser.beans.DateChooserCombo dateChooserCombo1;
     private javax.swing.JPanel department;
     private javax.swing.JPanel employee;
     private javax.swing.JPanel empty;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
@@ -1392,6 +1584,7 @@ public class FrmMainPayroll extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1429,8 +1622,10 @@ public class FrmMainPayroll extends javax.swing.JFrame {
     private javax.swing.JTextField txtEmployeeID;
     private javax.swing.JTextField txtEmployeeName;
     private javax.swing.JTextField txtEmployeeNik;
-    private javax.swing.JTextField txtEmployeeNoBank;
     private javax.swing.JTextField txtEmployeeNoHP;
+    private javax.swing.JTextField txtEmployeeNoRekening;
+    private javax.swing.JTextField txtEmployeeTangalLahir;
+    private javax.swing.JTextField txtEmployeeTanggalMasuk;
     private javax.swing.JTextField txtEmployeeTempatLahir;
     private javax.swing.JTextField txtEmployeeTunjangan;
     private javax.swing.JTextField txtID;
