@@ -466,9 +466,9 @@
                               <EmptySpace min="-2" pref="244" max="-2" attributes="0"/>
                               <Component id="btnUpdateBank1" min="-2" pref="85" max="-2" attributes="0"/>
                               <EmptySpace pref="233" max="32767" attributes="0"/>
-                              <Component id="btnDelete1" min="-2" pref="70" max="-2" attributes="0"/>
+                              <Component id="btnDeleteBank" min="-2" pref="70" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="260" max="-2" attributes="0"/>
-                              <Component id="btnNewBank4" min="-2" pref="86" max="-2" attributes="0"/>
+                              <Component id="btnSaveToDatabaseBank" min="-2" pref="86" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -504,8 +504,8 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="btnDelete1" pref="90" max="32767" attributes="0"/>
-                                          <Component id="btnNewBank4" max="32767" attributes="0"/>
+                                          <Component id="btnDeleteBank" pref="90" max="32767" attributes="0"/>
+                                          <Component id="btnSaveToDatabaseBank" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
@@ -531,18 +531,21 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUpdateBank1ActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btnDelete1">
+                    <Component class="javax.swing.JButton" name="btnDeleteBank">
                       <Properties>
                         <Property name="contentAreaFilled" type="boolean" value="false"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDelete1ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeleteBankActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btnNewBank4">
+                    <Component class="javax.swing.JButton" name="btnSaveToDatabaseBank">
                       <Properties>
                         <Property name="contentAreaFilled" type="boolean" value="false"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSaveToDatabaseBankActionPerformed"/>
+                      </Events>
                     </Component>
                     <Container class="javax.swing.JScrollPane" name="jScrollPane2">
                       <AuxValues>
@@ -645,17 +648,17 @@
                               <EmptySpace min="-2" pref="249" max="-2" attributes="0"/>
                               <Component id="btnEmployeeUpdate" min="-2" pref="87" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="230" max="-2" attributes="0"/>
-                              <Component id="jButton11" min="-2" pref="70" max="-2" attributes="0"/>
+                              <Component id="btnEmployeeDelete" min="-2" pref="70" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jButton2" min="-2" pref="89" max="-2" attributes="0"/>
+                              <Component id="btnEmployeeSaveToDatabase" min="-2" pref="89" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="172" max="-2" attributes="0"/>
-                              <Component id="jScrollPane3" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                              <Component id="jScrollPane3" min="-2" pref="343" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="1" attributes="0">
                                           <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
@@ -673,18 +676,16 @@
                                               <Component id="txtEmployeeEmail" alignment="0" max="32767" attributes="0"/>
                                               <Component id="cboEmployeeStatusPerkawinan" alignment="0" max="32767" attributes="0"/>
                                               <Component id="cboEmployeeAgama" alignment="0" min="-2" pref="171" max="-2" attributes="0"/>
-                                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                                  <Component id="cboEmployeeStatusPajak" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="cboEmployeeTipeKaryawan" alignment="0" pref="90" max="32767" attributes="0"/>
-                                                  <Component id="cboEmployeeIdDepartment" alignment="0" max="32767" attributes="0"/>
-                                              </Group>
+                                              <Component id="cboEmployeeStatusPajak" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="cboEmployeeTipeKaryawan" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="cboEmployeeIdDepartment" alignment="0" max="32767" attributes="0"/>
                                           </Group>
                                           <Component id="jScrollPane1" min="-2" pref="258" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="32767" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="1" attributes="0">
                                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
@@ -736,10 +737,10 @@
                           <Group type="102" attributes="0">
                               <EmptySpace min="28" pref="28" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jButton2" alignment="0" min="-2" pref="96" max="-2" attributes="0"/>
+                                  <Component id="btnEmployeeSaveToDatabase" alignment="0" min="-2" pref="96" max="-2" attributes="0"/>
                                   <Component id="btnEmployeeNew" alignment="0" min="-2" pref="82" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="jButton11" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <Component id="btnEmployeeDelete" min="-2" pref="90" max="-2" attributes="0"/>
                                       <Group type="102" attributes="0">
                                           <Component id="btnEmployeeUpdate" max="32767" attributes="0"/>
                                           <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
@@ -875,12 +876,12 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEmployeeUpdateActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="jButton11">
+                    <Component class="javax.swing.JButton" name="btnEmployeeDelete">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="delete Employee"/>
+                        <Property name="contentAreaFilled" type="boolean" value="false"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton11ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEmployeeDeleteActionPerformed"/>
                       </Events>
                     </Component>
                     <Container class="javax.swing.JScrollPane" name="jScrollPane3">
@@ -893,9 +894,10 @@
                         <Component class="javax.swing.JTable" name="tblEmployee">
                           <Properties>
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                              <Table columnCount="2" rowCount="0">
-                                <Column editable="false" title="ID Karyawan" type="java.lang.String"/>
+                              <Table columnCount="3" rowCount="0">
+                                <Column editable="false" title="ID Karyawan" type="java.lang.Integer"/>
                                 <Column editable="false" title="Nama" type="java.lang.String"/>
+                                <Column editable="false" title="NIK" type="java.lang.String"/>
                               </Table>
                             </Property>
                             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -906,6 +908,11 @@
                                   <Renderer/>
                                 </Column>
                                 <Column maxWidth="-1" minWidth="-1" prefWidth="60" resizable="false">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                                   <Title/>
                                   <Editor/>
                                   <Renderer/>
@@ -1152,10 +1159,13 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="txtEmployeeTanggalMasuk">
                     </Component>
-                    <Component class="javax.swing.JButton" name="jButton2">
+                    <Component class="javax.swing.JButton" name="btnEmployeeSaveToDatabase">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="jButton2"/>
+                        <Property name="contentAreaFilled" type="boolean" value="false"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEmployeeSaveToDatabaseActionPerformed"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -1189,14 +1199,6 @@
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="128" max="-2" attributes="0"/>
-                                      <Component id="btnDepartmentAdd" min="-2" pref="72" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="245" max="-2" attributes="0"/>
-                                      <Component id="btnDepartmentUpdate" min="-2" pref="85" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="235" max="-2" attributes="0"/>
-                                      <Component id="btnDepartmentDelete" min="-2" pref="67" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="262" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="lblDepartmentName" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -1213,7 +1215,18 @@
                                       <Component id="jScrollPane4" min="-2" pref="338" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="448" max="32767" attributes="0"/>
+                              <EmptySpace pref="680" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="128" max="-2" attributes="0"/>
+                              <Component id="btnDepartmentAdd" min="-2" pref="72" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="245" max="-2" attributes="0"/>
+                              <Component id="btnDepartmentUpdate" min="-2" pref="85" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="235" max="-2" attributes="0"/>
+                              <Component id="btnDepartmentDelete" min="-2" pref="67" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="btnDepartmentSaveToDatabase" min="-2" pref="86" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1249,6 +1262,11 @@
                               <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
                               <Component id="jScrollPane4" min="-2" pref="164" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="258" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                              <Component id="btnDepartmentSaveToDatabase" min="-2" pref="90" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1313,6 +1331,14 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="txtDepartmentID">
+                    </Component>
+                    <Component class="javax.swing.JButton" name="btnDepartmentSaveToDatabase">
+                      <Properties>
+                        <Property name="contentAreaFilled" type="boolean" value="false"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDepartmentSaveToDatabaseActionPerformed"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>

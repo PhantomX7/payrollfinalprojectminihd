@@ -27,9 +27,6 @@ import util.DbConn;
  */
 public class FrmMainPayroll extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FrmMain
-     */
     Connection myConn = null;
     PreparedStatement myStmt = null;
     ResultSet myRs = null;
@@ -44,6 +41,54 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         departmentListener();
     }
 
+    private void tableBankInitData() {
+        DefaultTableModel tableModel = (DefaultTableModel) tblBank.getModel();
+        for (int i = tblBank.getRowCount() - 1; i >= 0; i--) {
+            tableModel.removeRow(i);
+        }
+        try {
+            myConn = DriverManager.getConnection(DbConn.JDBC_URL, DbConn.JDBC_USERNAME, DbConn.JDBC_PASSWORD);
+            // Prepare statement
+            myStmt = myConn.prepareStatement("select * from bank");
+
+            // Execute SQL query
+            myRs = myStmt.executeQuery();
+            // Process result set
+            while (myRs.next()) {
+                Object data[] = {myRs.getInt("id_bank"), myRs.getString("bank"), myRs.getString("cabang_bank"), myRs.getString("alamat")};
+                tableModel.addRow(data);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(FrmMainPayroll.class
+                    .getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void tableDepartmentInitData() {
+
+        DefaultTableModel tableModel = (DefaultTableModel) tblDepartment.getModel();
+        for (int i = tblDepartment.getRowCount() - 1; i >= 0; i--) {
+            tableModel.removeRow(i);
+        }
+        try {
+            myConn = DriverManager.getConnection(DbConn.JDBC_URL, DbConn.JDBC_USERNAME, DbConn.JDBC_PASSWORD);
+            // Prepare statement
+            myStmt = myConn.prepareStatement("select * from departments");
+
+            // Execute statement
+            myRs = myStmt.executeQuery();
+            // Process result set
+            while (myRs.next()) {
+                Object data[] = {myRs.getInt("id_department"), myRs.getString("department")};
+                tableModel.addRow(data);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(FrmMainPayroll.class
+                    .getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     private void tableEmployeeInitData() {
         int row = 0;
         DefaultTableModel tableModel = (DefaultTableModel) tblEmployee.getModel();
@@ -53,8 +98,7 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         try {
             myConn = DriverManager.getConnection(DbConn.JDBC_URL, DbConn.JDBC_USERNAME, DbConn.JDBC_PASSWORD);
             // Prepare statement
-            myStmt = myConn.prepareStatement("select * from karyawan");
-
+            myStmt = myConn.prepareStatement("select * from data_karyawan");
             // Execute SQL query
             myRs = myStmt.executeQuery();
 
@@ -75,28 +119,25 @@ public class FrmMainPayroll extends javax.swing.JFrame {
                 String agama = myRs.getString("agama");
                 String status_perkawinan = myRs.getString("status_perkawinan");
                 String status_pajak = myRs.getString("status_pajak");
-                String id_department = myRs.getString("id_department");
+                String id_department = myRs.getString("department");
                 String tipe_Karyawan = myRs.getString("tipe_Karyawan");
                 String tanggal_masuk = myRs.getString("tgl_masuk");
                 Double gaji_kotor = myRs.getDouble("gaji_kotor");
                 Double tunjangan = myRs.getDouble("tunjangan");
-                String idBank = myRs.getString("id_bank");
+                String idBank = myRs.getString("bank");
                 String noRekening = myRs.getString("no_rekening");
 
                 employeeList.add(new Employee(id, name, nik, jenisKelamin, tempatLahir, tanggalLahir, alamat, noHp, email,
                         agama, status_perkawinan, status_pajak, id_department, tipe_Karyawan, tanggal_masuk, gaji_kotor, tunjangan, idBank, noRekening));
-
             }
-
         } catch (SQLException ex) {
             Logger.getLogger(FrmMainPayroll.class
                     .getName()).log(Level.SEVERE, null, ex);
         }
         for (int i = 0; i < row; i++) {
-            Object data[] = {employeeList.get(i).getId(), employeeList.get(i).getName()};
+            Object data[] = {employeeList.get(i).getId(), employeeList.get(i).getName(), employeeList.get(i).getNik()};
             tableModel.addRow(data);
         }
-
         //generate
         generateDepartmenCboItem();
         generateBankCboItem();
@@ -108,7 +149,6 @@ public class FrmMainPayroll extends javax.swing.JFrame {
             myConn = DriverManager.getConnection(DbConn.JDBC_URL, DbConn.JDBC_USERNAME, DbConn.JDBC_PASSWORD);
             // Prepare statement
             myStmt = myConn.prepareStatement("select * from departments");
-
             // Execute SQL query
             myRs = myStmt.executeQuery();
             ArrayList<String> department = new ArrayList<>();
@@ -130,7 +170,6 @@ public class FrmMainPayroll extends javax.swing.JFrame {
             myConn = DriverManager.getConnection(DbConn.JDBC_URL, DbConn.JDBC_USERNAME, DbConn.JDBC_PASSWORD);
             // Prepare statement
             myStmt = myConn.prepareStatement("select * from bank");
-
             // Execute SQL query
             myRs = myStmt.executeQuery();
             ArrayList<String> bank = new ArrayList<>();
@@ -165,13 +204,12 @@ public class FrmMainPayroll extends javax.swing.JFrame {
                     cboEmployeeStatusPerkawinan.setSelectedItem(employee.getStatus_perkawinan());
                     cboEmployeeStatusPajak.setSelectedItem(employee.getStatus_pajak());
                     cboEmployeeTipeKaryawan.setSelectedItem(employee.getTipe_Karyawan());
-                    cboEmployeeIdDepartment.setSelectedIndex((Integer.valueOf(employee.getId_department()) - 1));
+                    cboEmployeeIdDepartment.setSelectedItem(employee.getId_department());
                     txtEmployeeTanggalMasuk.setText(employee.getTanggal_masuk());
-                    cboEmployeeIdBank.setSelectedIndex(Integer.valueOf(employee.getIdBank()) - 1);
+                    cboEmployeeIdBank.setSelectedItem(employee.getIdBank());
                     txtEmployeeGajiKotor.setText(String.valueOf(employee.getGaji_kotor()));
                     txtEmployeeTunjangan.setText(employee.getTunjangan().toString());
                     txtEmployeeNoRekening.setText(employee.getNoRekening());
-
                 }
             }
         };
@@ -260,8 +298,8 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         bank = new javax.swing.JPanel();
         btnNewBank = new javax.swing.JButton();
         btnUpdateBank1 = new javax.swing.JButton();
-        btnDelete1 = new javax.swing.JButton();
-        btnNewBank4 = new javax.swing.JButton();
+        btnDeleteBank = new javax.swing.JButton();
+        btnSaveToDatabaseBank = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblBank = new javax.swing.JTable();
         jLabel18 = new javax.swing.JLabel();
@@ -276,7 +314,7 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         btnEmployeeNew = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         btnEmployeeUpdate = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
+        btnEmployeeDelete = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblEmployee = new javax.swing.JTable();
         txtEmployeeID = new javax.swing.JTextField();
@@ -317,7 +355,7 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         txtEmployeeTangalLahir = new javax.swing.JTextField();
         jLabel35 = new javax.swing.JLabel();
         txtEmployeeTanggalMasuk = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        btnEmployeeSaveToDatabase = new javax.swing.JButton();
         empty = new javax.swing.JPanel();
         department = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -329,6 +367,7 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         btnDepartmentUpdate = new javax.swing.JButton();
         lblDepartmentID = new javax.swing.JLabel();
         txtDepartmentID = new javax.swing.JTextField();
+        btnDepartmentSaveToDatabase = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         btnDepartment = new javax.swing.JButton();
         btnBank = new javax.swing.JButton();
@@ -558,14 +597,19 @@ public class FrmMainPayroll extends javax.swing.JFrame {
             }
         });
 
-        btnDelete1.setContentAreaFilled(false);
-        btnDelete1.addActionListener(new java.awt.event.ActionListener() {
+        btnDeleteBank.setContentAreaFilled(false);
+        btnDeleteBank.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDelete1ActionPerformed(evt);
+                btnDeleteBankActionPerformed(evt);
             }
         });
 
-        btnNewBank4.setContentAreaFilled(false);
+        btnSaveToDatabaseBank.setContentAreaFilled(false);
+        btnSaveToDatabaseBank.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveToDatabaseBankActionPerformed(evt);
+            }
+        });
 
         tblBank.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -639,9 +683,9 @@ public class FrmMainPayroll extends javax.swing.JFrame {
                 .addGap(244, 244, 244)
                 .addComponent(btnUpdateBank1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 233, Short.MAX_VALUE)
-                .addComponent(btnDelete1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnDeleteBank, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(260, 260, 260)
-                .addComponent(btnNewBank4, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSaveToDatabaseBank, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(101, 101, 101))
         );
         bankLayout.setVerticalGroup(
@@ -671,8 +715,8 @@ public class FrmMainPayroll extends javax.swing.JFrame {
                     .addGroup(bankLayout.createSequentialGroup()
                         .addGap(8, 8, 8)
                         .addGroup(bankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnDelete1, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
-                            .addComponent(btnNewBank4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnDeleteBank, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                            .addComponent(btnSaveToDatabaseBank, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
 
@@ -696,10 +740,10 @@ public class FrmMainPayroll extends javax.swing.JFrame {
             }
         });
 
-        jButton11.setText("delete Employee");
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
+        btnEmployeeDelete.setContentAreaFilled(false);
+        btnEmployeeDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
+                btnEmployeeDeleteActionPerformed(evt);
             }
         });
 
@@ -708,14 +752,14 @@ public class FrmMainPayroll extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID Karyawan", "Nama"
+                "ID Karyawan", "Nama", "NIK"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -732,6 +776,7 @@ public class FrmMainPayroll extends javax.swing.JFrame {
             tblEmployee.getColumnModel().getColumn(0).setPreferredWidth(1);
             tblEmployee.getColumnModel().getColumn(1).setResizable(false);
             tblEmployee.getColumnModel().getColumn(1).setPreferredWidth(60);
+            tblEmployee.getColumnModel().getColumn(2).setResizable(false);
         }
 
         jLabel3.setText("NIK");
@@ -794,7 +839,12 @@ public class FrmMainPayroll extends javax.swing.JFrame {
 
         jLabel35.setText("Tanggal Lahir");
 
-        jButton2.setText("jButton2");
+        btnEmployeeSaveToDatabase.setContentAreaFilled(false);
+        btnEmployeeSaveToDatabase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEmployeeSaveToDatabaseActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout employeeLayout = new javax.swing.GroupLayout(employee);
         employee.setLayout(employeeLayout);
@@ -806,16 +856,16 @@ public class FrmMainPayroll extends javax.swing.JFrame {
                 .addGap(249, 249, 249)
                 .addComponent(btnEmployeeUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(230, 230, 230)
-                .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEmployeeDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEmployeeSaveToDatabase, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(98, 98, 98))
             .addGroup(employeeLayout.createSequentialGroup()
-                .addGap(172, 172, 172)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(employeeLayout.createSequentialGroup()
-                        .addGap(65, 65, 65)
+                        .addGap(48, 48, 48)
                         .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel22)
                             .addComponent(jLabel23)
@@ -832,14 +882,13 @@ public class FrmMainPayroll extends javax.swing.JFrame {
                                 .addComponent(txtEmployeeEmail)
                                 .addComponent(cboEmployeeStatusPerkawinan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(cboEmployeeAgama, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(cboEmployeeStatusPajak, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cboEmployeeTipeKaryawan, javax.swing.GroupLayout.Alignment.LEADING, 0, 90, Short.MAX_VALUE)
-                                    .addComponent(cboEmployeeIdDepartment, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(cboEmployeeStatusPajak, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cboEmployeeTipeKaryawan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cboEmployeeIdDepartment, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, employeeLayout.createSequentialGroup()
-                        .addGap(90, 90, 90)
+                    .addGroup(employeeLayout.createSequentialGroup()
+                        .addGap(73, 73, 73)
                         .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel16)
@@ -880,10 +929,10 @@ public class FrmMainPayroll extends javax.swing.JFrame {
             .addGroup(employeeLayout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEmployeeSaveToDatabase, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEmployeeNew, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnEmployeeDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(employeeLayout.createSequentialGroup()
                             .addComponent(btnEmployeeUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGap(8, 8, 8))))
@@ -1027,19 +1076,19 @@ public class FrmMainPayroll extends javax.swing.JFrame {
 
         lblDepartmentID.setText("Department ID");
 
+        btnDepartmentSaveToDatabase.setContentAreaFilled(false);
+        btnDepartmentSaveToDatabase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDepartmentSaveToDatabaseActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout departmentLayout = new javax.swing.GroupLayout(department);
         department.setLayout(departmentLayout);
         departmentLayout.setHorizontalGroup(
             departmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(departmentLayout.createSequentialGroup()
                 .addGroup(departmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(departmentLayout.createSequentialGroup()
-                        .addGap(128, 128, 128)
-                        .addComponent(btnDepartmentAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(245, 245, 245)
-                        .addComponent(btnDepartmentUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(235, 235, 235)
-                        .addComponent(btnDepartmentDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(departmentLayout.createSequentialGroup()
                         .addGap(262, 262, 262)
                         .addGroup(departmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1052,7 +1101,17 @@ public class FrmMainPayroll extends javax.swing.JFrame {
                     .addGroup(departmentLayout.createSequentialGroup()
                         .addGap(239, 239, 239)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(448, Short.MAX_VALUE))
+                .addContainerGap(680, Short.MAX_VALUE))
+            .addGroup(departmentLayout.createSequentialGroup()
+                .addGap(128, 128, 128)
+                .addComponent(btnDepartmentAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(245, 245, 245)
+                .addComponent(btnDepartmentUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(235, 235, 235)
+                .addComponent(btnDepartmentDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnDepartmentSaveToDatabase, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(102, 102, 102))
         );
         departmentLayout.setVerticalGroup(
             departmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1079,6 +1138,10 @@ public class FrmMainPayroll extends javax.swing.JFrame {
                 .addGap(105, 105, 105)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(258, 258, 258))
+            .addGroup(departmentLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(btnDepartmentSaveToDatabase, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.add(department, "card6");
@@ -1197,7 +1260,6 @@ public class FrmMainPayroll extends javax.swing.JFrame {
 
     private void btnEmployeeNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeeNewActionPerformed
         DefaultTableModel tableModel = (DefaultTableModel) tblEmployee.getModel();
-//        int i = tableModel.getRowCount() + 1;
         if (!txtEmployeeID.getText().trim().isEmpty()
                 && !txtEmployeeName.getText().trim().isEmpty()
                 && !txtEmployeeNik.getText().trim().isEmpty()
@@ -1223,18 +1285,18 @@ public class FrmMainPayroll extends javax.swing.JFrame {
             String agama = cboEmployeeAgama.getSelectedItem().toString();
             String status_perkawinan = cboEmployeeStatusPerkawinan.getSelectedItem().toString();
             String status_pajak = cboEmployeeStatusPajak.getSelectedItem().toString();
-            String id_department = String.valueOf(cboEmployeeIdDepartment.getSelectedIndex() - 1);
+            String id_department = cboEmployeeIdDepartment.getSelectedItem().toString();
             String tipe_Karyawan = cboEmployeeTipeKaryawan.getSelectedItem().toString();
             String tanggal_masuk = txtEmployeeTanggalMasuk.getText();
             Double gaji_kotor = Double.valueOf(txtEmployeeGajiKotor.getText());
             Double tunjangan = Double.valueOf(txtEmployeeTunjangan.getText());
-            String idBank = String.valueOf(cboEmployeeIdBank.getSelectedIndex() - 1);
+            String idBank = cboEmployeeIdBank.getSelectedItem().toString();
             String noRekening = txtEmployeeNoRekening.getText();
             employeeList.add(new Employee(id, name, nik, jenisKelamin, tempatLahir, tanggalLahir, alamat, noHp, email, agama,
                     status_perkawinan, status_pajak, id_department, tipe_Karyawan,
                     tanggal_masuk, gaji_kotor, tunjangan, idBank, noRekening));
 
-            Object data[] = {id, name};
+            Object data[] = {id, name, nik};
             tableModel.addRow(data);
 
             txtEmployeeID.setText("");
@@ -1283,12 +1345,12 @@ public class FrmMainPayroll extends javax.swing.JFrame {
                 String agama = cboEmployeeAgama.getSelectedItem().toString();
                 String status_perkawinan = cboEmployeeStatusPerkawinan.getSelectedItem().toString();
                 String status_pajak = cboEmployeeStatusPajak.getSelectedItem().toString();
-                String id_department = String.valueOf(cboEmployeeIdDepartment.getSelectedIndex() + 1);
+                String id_department = cboEmployeeIdDepartment.getSelectedItem().toString();
                 String tipe_Karyawan = cboEmployeeTipeKaryawan.getSelectedItem().toString();
                 String tanggal_masuk = txtEmployeeTanggalMasuk.getText();
                 Double gaji_kotor = Double.valueOf(txtEmployeeGajiKotor.getText());
                 Double tunjangan = Double.valueOf(txtEmployeeTunjangan.getText());
-                String idBank = String.valueOf(cboEmployeeIdBank.getSelectedIndex() + 1);
+                String idBank = cboEmployeeIdBank.getSelectedItem().toString();
                 String noRekening = txtEmployeeNoRekening.getText();
 
                 employee.setId(id);
@@ -1327,31 +1389,38 @@ public class FrmMainPayroll extends javax.swing.JFrame {
                 txtEmployeeTunjangan.setText("");
                 txtEmployeeNoRekening.setText("");
             }
-
         } else {
             JOptionPane.showMessageDialog(this, "Please select the data", "App Information", 1);
         }
     }//GEN-LAST:event_btnEmployeeUpdateActionPerformed
 
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-
-    }//GEN-LAST:event_jButton11ActionPerformed
+    private void btnEmployeeDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeeDeleteActionPerformed
+        int row = tblEmployee.getSelectedRow();
+        DefaultTableModel tableModel = (DefaultTableModel) tblEmployee.getModel();
+        if (tblEmployee.getSelectedRow() >= 0) {
+            tableModel.removeRow(row);
+            employeeList.remove(row);
+        } else {
+            JOptionPane.showMessageDialog(this, "Please select the data", "App Information", 1);
+        }
+    }//GEN-LAST:event_btnEmployeeDeleteActionPerformed
 
     private void btnDepartmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDepartmentActionPerformed
         changeMainSubLayout(department);
         changeTransactionImage(false);
+        tableDepartmentInitData();
     }//GEN-LAST:event_btnDepartmentActionPerformed
 
     private void btnEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeeActionPerformed
         changeMainSubLayout(employee);
         changeTransactionImage(false);
         tableEmployeeInitData();
-
     }//GEN-LAST:event_btnEmployeeActionPerformed
 
     private void btnBankActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBankActionPerformed
         changeMainSubLayout(bank);
         changeTransactionImage(false);
+        tableBankInitData();
     }//GEN-LAST:event_btnBankActionPerformed
 
     private void btnTransactionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransactionActionPerformed
@@ -1366,7 +1435,6 @@ public class FrmMainPayroll extends javax.swing.JFrame {
 
     private void btnNewBankActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewBankActionPerformed
         DefaultTableModel tableModel = (DefaultTableModel) tblBank.getModel();
-//        int i = tableModel.getRowCount() + 1;
         if (!txtNamaBank.getText().trim().isEmpty() && !txtIdBank.getText().trim().isEmpty() && !txtCabangBank.getText().trim().isEmpty() && !txtAlamatBank.getText().trim().isEmpty()) {
 
             Object data[] = {txtIdBank.getText(),
@@ -1402,7 +1470,7 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnUpdateBank1ActionPerformed
 
-    private void btnDelete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelete1ActionPerformed
+    private void btnDeleteBankActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteBankActionPerformed
         int row = tblBank.getSelectedRow();
         DefaultTableModel tableModel = (DefaultTableModel) tblBank.getModel();
         if (tblBank.getSelectedRow() >= 0) {
@@ -1411,15 +1479,13 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Please select the data", "App Information", 1);
         }
-    }//GEN-LAST:event_btnDelete1ActionPerformed
+    }//GEN-LAST:event_btnDeleteBankActionPerformed
 
     private void txtEmployeeNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmployeeNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEmployeeNameActionPerformed
 
     private void btnDepartmentAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDepartmentAddActionPerformed
-        // TODO add your handling code here:
-
         if (!txtDepartmentName.getText().trim().isEmpty() && !txtDepartmentID.getText().trim().isEmpty()) {
             Object data[] = {txtDepartmentID.getText().toUpperCase(),
                 txtDepartmentName.getText().toUpperCase()};
@@ -1454,6 +1520,112 @@ public class FrmMainPayroll extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please Select Data", "App Information", 1);
         }
     }//GEN-LAST:event_btnDepartmentUpdateActionPerformed
+
+    private void btnSaveToDatabaseBankActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveToDatabaseBankActionPerformed
+
+        try {
+
+            myConn = DriverManager.getConnection(DbConn.JDBC_URL, DbConn.JDBC_USERNAME, DbConn.JDBC_PASSWORD);
+            // Prepare statement
+            myStmt = myConn.prepareStatement("delete from bank");
+            // Execute SQL query
+            myStmt.executeUpdate();
+            for (int i = 0; i < tblBank.getRowCount(); i++) {
+                // Prepare statement
+
+                myStmt = myConn
+                        .prepareStatement("insert into bank values (?,?,?,?)");
+
+                myStmt.setInt(1, Integer.valueOf(tblBank.getValueAt(i, 0).toString()));
+                myStmt.setString(2, tblBank.getValueAt(i, 1).toString());
+                myStmt.setString(3, tblBank.getValueAt(i, 2).toString());
+                myStmt.setString(4, tblBank.getValueAt(i, 3).toString());
+
+                // Execute SQL query
+                myStmt.executeUpdate();
+
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Please Ensure there is no item\n"
+                    + " with the same id", "App Information", 1);
+            Logger.getLogger(FrmMainPayroll.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+    }//GEN-LAST:event_btnSaveToDatabaseBankActionPerformed
+
+    private void btnEmployeeSaveToDatabaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeeSaveToDatabaseActionPerformed
+        try {
+
+            myConn = DriverManager.getConnection(DbConn.JDBC_URL, DbConn.JDBC_USERNAME, DbConn.JDBC_PASSWORD);
+            // Prepare statement
+            myStmt = myConn.prepareStatement("delete from karyawan");
+            // Execute SQL query
+            myStmt.executeUpdate();
+            for (Employee e : employeeList) {
+                // Prepare statement
+
+                myStmt = myConn.prepareStatement("insert into karyawan values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+
+                myStmt.setInt(1, e.getId());
+                myStmt.setString(2, e.getName());
+                myStmt.setString(3, e.getNik());
+                myStmt.setString(4, e.getJenisKelamin());
+                myStmt.setString(5, e.getTempatLahir());
+                myStmt.setString(6, e.getTanggalLahir());
+                myStmt.setString(7, e.getAlamat());
+                myStmt.setString(8, e.getNoHp());
+                myStmt.setString(9, e.getEmail());
+                myStmt.setString(10, e.getAgama());
+                myStmt.setString(11, e.getStatus_perkawinan());
+                myStmt.setString(12, e.getStatus_pajak());
+                myStmt.setString(13, e.getId_department());
+                myStmt.setString(14, e.getTipe_Karyawan());
+                myStmt.setString(15, e.getTanggal_masuk());
+                myStmt.setDouble(16, e.getGaji_kotor());
+                myStmt.setDouble(17, e.getTunjangan());
+                myStmt.setString(18, e.getIdBank());
+                myStmt.setString(19, e.getNoRekening());
+
+                // Execute SQL query
+                myStmt.executeUpdate();
+
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Please Ensure there is no item\n"
+                    + " with the same id", "App Information", 1);
+            Logger.getLogger(FrmMainPayroll.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_btnEmployeeSaveToDatabaseActionPerformed
+
+    private void btnDepartmentSaveToDatabaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDepartmentSaveToDatabaseActionPerformed
+        try {
+            myConn = DriverManager.getConnection(DbConn.JDBC_URL, DbConn.JDBC_USERNAME, DbConn.JDBC_PASSWORD);
+            // Prepare statement
+            myStmt = myConn.prepareStatement("delete from departments");
+
+            // Execute SQL query
+            myStmt.executeUpdate();
+            for (int i = 0; i < tblDepartment.getRowCount(); i++) {
+                // Prepare statement
+
+                myStmt = myConn.prepareStatement("insert into departments values (?,?)");
+
+                myStmt.setInt(1, Integer.valueOf(tblDepartment.getValueAt(i, 0).toString()));
+                myStmt.setString(2, tblDepartment.getValueAt(i, 1).toString());
+
+                // Execute SQL query
+                myStmt.executeUpdate();
+
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Please Ensure there is no item\n"
+                    + " with the same id", "App Information", 1);
+            Logger.getLogger(FrmMainPayroll.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_btnDepartmentSaveToDatabaseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1524,16 +1696,19 @@ public class FrmMainPayroll extends javax.swing.JFrame {
     private javax.swing.JPanel admin;
     private javax.swing.JPanel bank;
     private javax.swing.JButton btnBank;
-    private javax.swing.JButton btnDelete1;
+    private javax.swing.JButton btnDeleteBank;
     private javax.swing.JButton btnDepartment;
     private javax.swing.JButton btnDepartmentAdd;
     private javax.swing.JButton btnDepartmentDelete;
+    private javax.swing.JButton btnDepartmentSaveToDatabase;
     private javax.swing.JButton btnDepartmentUpdate;
     private javax.swing.JButton btnEmployee;
+    private javax.swing.JButton btnEmployeeDelete;
     private javax.swing.JButton btnEmployeeNew;
+    private javax.swing.JButton btnEmployeeSaveToDatabase;
     private javax.swing.JButton btnEmployeeUpdate;
     private javax.swing.JButton btnNewBank;
-    private javax.swing.JButton btnNewBank4;
+    private javax.swing.JButton btnSaveToDatabaseBank;
     private javax.swing.JButton btnTransaction;
     private javax.swing.JButton btnUpdateBank1;
     private javax.swing.JButton btnVerify;
@@ -1550,8 +1725,6 @@ public class FrmMainPayroll extends javax.swing.JFrame {
     private javax.swing.JPanel employee;
     private javax.swing.JPanel empty;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
