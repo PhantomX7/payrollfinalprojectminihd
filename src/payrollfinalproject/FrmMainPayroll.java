@@ -98,7 +98,7 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         try {
             myConn = DriverManager.getConnection(DbConn.JDBC_URL, DbConn.JDBC_USERNAME, DbConn.JDBC_PASSWORD);
             // Prepare statement
-            myStmt = myConn.prepareStatement("select * from data_karyawan");
+            myStmt = myConn.prepareStatement("select * from karyawan");
             // Execute SQL query
             myRs = myStmt.executeQuery();
 
@@ -119,12 +119,12 @@ public class FrmMainPayroll extends javax.swing.JFrame {
                 String agama = myRs.getString("agama");
                 String status_perkawinan = myRs.getString("status_perkawinan");
                 String status_pajak = myRs.getString("status_pajak");
-                String id_department = myRs.getString("department");
+                String id_department = myRs.getString("id_department");
                 String tipe_Karyawan = myRs.getString("tipe_Karyawan");
                 String tanggal_masuk = myRs.getString("tgl_masuk");
                 Double gaji_kotor = myRs.getDouble("gaji_kotor");
                 Double tunjangan = myRs.getDouble("tunjangan");
-                String idBank = myRs.getString("bank");
+                String idBank = myRs.getString("id_bank");
                 String noRekening = myRs.getString("no_rekening");
 
                 employeeList.add(new Employee(id, name, nik, jenisKelamin, tempatLahir, tanggalLahir, alamat, noHp, email,
@@ -204,9 +204,9 @@ public class FrmMainPayroll extends javax.swing.JFrame {
                     cboEmployeeStatusPerkawinan.setSelectedItem(employee.getStatus_perkawinan());
                     cboEmployeeStatusPajak.setSelectedItem(employee.getStatus_pajak());
                     cboEmployeeTipeKaryawan.setSelectedItem(employee.getTipe_Karyawan());
-                    cboEmployeeIdDepartment.setSelectedItem(employee.getId_department());
+                    cboEmployeeIdDepartment.setSelectedIndex(Integer.valueOf(employee.getId_department()) - 1);
                     txtEmployeeTanggalMasuk.setText(employee.getTanggal_masuk());
-                    cboEmployeeIdBank.setSelectedItem(employee.getIdBank());
+                    cboEmployeeIdBank.setSelectedIndex(Integer.valueOf(employee.getIdBank()) - 1);
                     txtEmployeeGajiKotor.setText(String.valueOf(employee.getGaji_kotor()));
                     txtEmployeeTunjangan.setText(employee.getTunjangan().toString());
                     txtEmployeeNoRekening.setText(employee.getNoRekening());
@@ -1285,12 +1285,12 @@ public class FrmMainPayroll extends javax.swing.JFrame {
             String agama = cboEmployeeAgama.getSelectedItem().toString();
             String status_perkawinan = cboEmployeeStatusPerkawinan.getSelectedItem().toString();
             String status_pajak = cboEmployeeStatusPajak.getSelectedItem().toString();
-            String id_department = cboEmployeeIdDepartment.getSelectedItem().toString();
+            String id_department = String.valueOf(cboEmployeeIdDepartment.getSelectedIndex() + 1);
             String tipe_Karyawan = cboEmployeeTipeKaryawan.getSelectedItem().toString();
             String tanggal_masuk = txtEmployeeTanggalMasuk.getText();
             Double gaji_kotor = Double.valueOf(txtEmployeeGajiKotor.getText());
             Double tunjangan = Double.valueOf(txtEmployeeTunjangan.getText());
-            String idBank = cboEmployeeIdBank.getSelectedItem().toString();
+            String idBank = String.valueOf(cboEmployeeIdBank.getSelectedIndex() + 1);
             String noRekening = txtEmployeeNoRekening.getText();
             employeeList.add(new Employee(id, name, nik, jenisKelamin, tempatLahir, tanggalLahir, alamat, noHp, email, agama,
                     status_perkawinan, status_pajak, id_department, tipe_Karyawan,
@@ -1345,12 +1345,12 @@ public class FrmMainPayroll extends javax.swing.JFrame {
                 String agama = cboEmployeeAgama.getSelectedItem().toString();
                 String status_perkawinan = cboEmployeeStatusPerkawinan.getSelectedItem().toString();
                 String status_pajak = cboEmployeeStatusPajak.getSelectedItem().toString();
-                String id_department = cboEmployeeIdDepartment.getSelectedItem().toString();
+                String id_department = String.valueOf(cboEmployeeIdDepartment.getSelectedIndex() + 1);
                 String tipe_Karyawan = cboEmployeeTipeKaryawan.getSelectedItem().toString();
                 String tanggal_masuk = txtEmployeeTanggalMasuk.getText();
                 Double gaji_kotor = Double.valueOf(txtEmployeeGajiKotor.getText());
                 Double tunjangan = Double.valueOf(txtEmployeeTunjangan.getText());
-                String idBank = cboEmployeeIdBank.getSelectedItem().toString();
+                String idBank = String.valueOf(cboEmployeeIdBank.getSelectedIndex() + 1);
                 String noRekening = txtEmployeeNoRekening.getText();
 
                 employee.setId(id);
@@ -1568,8 +1568,8 @@ public class FrmMainPayroll extends javax.swing.JFrame {
                 myStmt = myConn.prepareStatement("insert into karyawan values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
                 myStmt.setInt(1, e.getId());
-                myStmt.setString(2, e.getName());
-                myStmt.setString(3, e.getNik());
+                myStmt.setString(2, e.getNik());
+                myStmt.setString(3, e.getName());
                 myStmt.setString(4, e.getJenisKelamin());
                 myStmt.setString(5, e.getTempatLahir());
                 myStmt.setString(6, e.getTanggalLahir());
