@@ -2081,7 +2081,6 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         lblTransactionDeduction.setText(txtTransactionDeduction.getText());
         if (lblTransactionTipeKaryawan.getText().equalsIgnoreCase("harian")) {
             double pay = (30 - Double.valueOf(lblTransactionTotalAbsent.getText())) / 30;
-            System.out.println(pay);
             double gKotor = Double.valueOf(lblGajiKotorTransaction.getText());
             double tunjang = Double.valueOf(lblTunjanganTransaction.getText());
             double deduct = Double.valueOf(lblTransactionDeduction.getText());
