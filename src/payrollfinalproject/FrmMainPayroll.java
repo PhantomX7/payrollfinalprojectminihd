@@ -38,9 +38,19 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         initComponents();
         setResizable(false);
         setSize(1600, 900);
+        connectDatabase();
         banklistener();
         employeeListener();
         departmentListener();
+    }
+
+    private void connectDatabase() {
+        try {
+            myConn = DriverManager.getConnection(DbConn.JDBC_URL, DbConn.JDBC_USERNAME, DbConn.JDBC_PASSWORD);
+        } catch (SQLException ex) {
+            Logger.getLogger(FrmMainPayroll.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     private void tableBankInitData() {
@@ -48,7 +58,6 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         tableModel.setRowCount(0);
 
         try {
-            myConn = DriverManager.getConnection(DbConn.JDBC_URL, DbConn.JDBC_USERNAME, DbConn.JDBC_PASSWORD);
             // Prepare statement
             myStmt = myConn.prepareStatement("select * from bank");
             // Execute SQL query
@@ -70,7 +79,6 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         tableModel.setRowCount(0);
 
         try {
-            myConn = DriverManager.getConnection(DbConn.JDBC_URL, DbConn.JDBC_USERNAME, DbConn.JDBC_PASSWORD);
             // Prepare statement
             myStmt = myConn.prepareStatement("select * from transaksi where periode_payroll=? and periode_pengajian=?");
 
@@ -103,7 +111,6 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         tableModel.setRowCount(0);
 
         try {
-            myConn = DriverManager.getConnection(DbConn.JDBC_URL, DbConn.JDBC_USERNAME, DbConn.JDBC_PASSWORD);
             // Prepare statement
             myStmt = myConn.prepareStatement("select * from departments");
 
@@ -126,7 +133,6 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         tableModel.setRowCount(0);
 
         try {
-            myConn = DriverManager.getConnection(DbConn.JDBC_URL, DbConn.JDBC_USERNAME, DbConn.JDBC_PASSWORD);
             // Prepare statement
             myStmt = myConn.prepareStatement("select * from karyawan");
             // Execute SQL query
@@ -176,7 +182,6 @@ public class FrmMainPayroll extends javax.swing.JFrame {
     private void generateDepartmenCboItem() {
         cboEmployeeIdDepartment.removeAllItems();
         try {
-            myConn = DriverManager.getConnection(DbConn.JDBC_URL, DbConn.JDBC_USERNAME, DbConn.JDBC_PASSWORD);
             // Prepare statement
             myStmt = myConn.prepareStatement("select * from departments");
             // Execute SQL query
@@ -197,7 +202,6 @@ public class FrmMainPayroll extends javax.swing.JFrame {
     private void generateBankCboItem() {
         cboEmployeeIdBank.removeAllItems();
         try {
-            myConn = DriverManager.getConnection(DbConn.JDBC_URL, DbConn.JDBC_USERNAME, DbConn.JDBC_PASSWORD);
             // Prepare statement
             myStmt = myConn.prepareStatement("select * from bank");
             // Execute SQL query
@@ -282,7 +286,6 @@ public class FrmMainPayroll extends javax.swing.JFrame {
 
     private void verifyEmployee() {
         try {
-            myConn = DriverManager.getConnection(DbConn.JDBC_URL, DbConn.JDBC_USERNAME, DbConn.JDBC_PASSWORD);
             // Prepare statement
             myStmt = myConn.prepareStatement("select * from data_karyawan where nik=?");
             myStmt.setString(1, txtID.getText());
@@ -317,7 +320,6 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         String noRekening = "";
         String tipeKaryawan = "";
         try {
-            myConn = DriverManager.getConnection(DbConn.JDBC_URL, DbConn.JDBC_USERNAME, DbConn.JDBC_PASSWORD);
             // Prepare statement
             myStmt = myConn.prepareStatement("select * from data_karyawan where nik=?");
             myStmt.setString(1, txtEmployeeTransaction.getText());
@@ -374,7 +376,6 @@ public class FrmMainPayroll extends javax.swing.JFrame {
 
     private void checkpayroll() {
         try {
-            myConn = DriverManager.getConnection(DbConn.JDBC_URL, DbConn.JDBC_USERNAME, DbConn.JDBC_PASSWORD);
             // Prepare statement
             myStmt = myConn.prepareStatement("select * from transaksi where karyawan=? and periode_pengajian =? and periode_payroll=?");
             myStmt.setString(1, lblUserName.getText());
@@ -2029,6 +2030,11 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         if (foundEmployee == true) {
             changeMainLayout(user);
         } else if (txtID.getText().equals("exit")) {
+            try {
+                myConn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(FrmMainPayroll.class.getName()).log(Level.SEVERE, null, ex);
+            }
             System.exit(0);
         } else if (txtID.getText().equals("admin")) {
             changeMainLayout(adminLogin);
@@ -2310,8 +2316,6 @@ public class FrmMainPayroll extends javax.swing.JFrame {
     private void btnSaveToDatabaseBankActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveToDatabaseBankActionPerformed
 
         try {
-
-            myConn = DriverManager.getConnection(DbConn.JDBC_URL, DbConn.JDBC_USERNAME, DbConn.JDBC_PASSWORD);
             // Prepare statement
             myStmt = myConn.prepareStatement("delete from bank");
             // Execute SQL query
@@ -2342,8 +2346,6 @@ public class FrmMainPayroll extends javax.swing.JFrame {
 
     private void btnEmployeeSaveToDatabaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeeSaveToDatabaseActionPerformed
         try {
-
-            myConn = DriverManager.getConnection(DbConn.JDBC_URL, DbConn.JDBC_USERNAME, DbConn.JDBC_PASSWORD);
             // Prepare statement
             myStmt = myConn.prepareStatement("delete from karyawan");
             // Execute SQL query
@@ -2387,7 +2389,6 @@ public class FrmMainPayroll extends javax.swing.JFrame {
 
     private void btnDepartmentSaveToDatabaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDepartmentSaveToDatabaseActionPerformed
         try {
-            myConn = DriverManager.getConnection(DbConn.JDBC_URL, DbConn.JDBC_USERNAME, DbConn.JDBC_PASSWORD);
             // Prepare statement
             myStmt = myConn.prepareStatement("delete from departments");
 
@@ -2494,8 +2495,6 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         int x = SUtility.msq(this, "Are you sure?");
         if (x == 0) {
             try {
-
-                myConn = DriverManager.getConnection(DbConn.JDBC_URL, DbConn.JDBC_USERNAME, DbConn.JDBC_PASSWORD);
                 // Prepare statement
                 int idNumber = 1;
                 myStmt = myConn
@@ -2550,7 +2549,6 @@ public class FrmMainPayroll extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void btnUserPayrollbtnPayrollActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserPayrollbtnPayrollActionPerformed
-        // TODO add your handling code here:
         checkpayroll();
     }//GEN-LAST:event_btnUserPayrollbtnPayrollActionPerformed
 
