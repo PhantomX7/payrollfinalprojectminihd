@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Payroll" language="groovy" pageWidth="595" pageHeight="400" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="116cd101-03dc-4a40-8af7-acb54412146d">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="51"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="id_transaksi" class="java.lang.String"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT
@@ -142,7 +142,7 @@ WHERE id_transaksi = $P!{id_transaksi}]]>
 				</textElement>
 				<text><![CDATA[Nama :]]></text>
 			</staticText>
-			<textField>
+			<textField pattern="Rp #,##0">
 				<reportElement x="299" y="152" width="106" height="20" uuid="c5b0ba69-8841-48e7-a747-cb09842f4794"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{transaksi_gaji_kotor}]]></textFieldExpression>
@@ -168,17 +168,17 @@ WHERE id_transaksi = $P!{id_transaksi}]]>
 				</textElement>
 				<text><![CDATA[Gaji Pokok :]]></text>
 			</staticText>
-			<textField>
+			<textField pattern="Rp #,##0">
 				<reportElement x="299" y="212" width="106" height="20" uuid="f18fe423-3e34-4fd7-b608-5fd67d3f1e73"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{transaksi_total_THP}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="Rp #,##0">
 				<reportElement x="299" y="172" width="106" height="20" uuid="e80302ee-0a5d-4f1f-b18b-c5b7618303da"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{transaksi_tunjangan}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="Rp #,##0">
 				<reportElement x="299" y="192" width="106" height="20" uuid="212f34a5-a4b4-42ef-987b-51d7ff3dc959"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{transaksi_potongan}]]></textFieldExpression>
