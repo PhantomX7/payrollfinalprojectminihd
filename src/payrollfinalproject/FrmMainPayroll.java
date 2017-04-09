@@ -78,6 +78,33 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         }
     }
 
+    public void emptyEmployeeField() {
+        txtEmployeeID.setText("");
+        txtEmployeeName.setText("");
+        txtEmployeeNik.setText("");
+        txtEmployeeTempatLahir.setText("");
+        txtEmployeeTangalLahir.setText("");
+        txtEmployeeAlamat.setText("");
+        txtEmployeeNoHP.setText("");
+        txtEmployeeEmail.setText("");
+        txtEmployeeTanggalMasuk.setText("");
+        txtEmployeeGajiKotor.setText("");
+        txtEmployeeTunjangan.setText("");
+        txtEmployeeNoRekening.setText("");
+    }
+
+    private void emptyBankField() {
+        txtIdBank.setText("");
+        txtNamaBank.setText("");
+        txtCabangBank.setText("");
+        txtAlamatBank.setText("");
+    }
+
+    private void emptyDepartmentField() {
+        txtDepartmentID.setText("");
+        txtDepartmentName.setText("");
+    }
+
     private void tableBankInitData() {
         DefaultTableModel tableModel = (DefaultTableModel) tblBank.getModel();
         tableModel.setRowCount(0);
@@ -457,9 +484,9 @@ public class FrmMainPayroll extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         main = new javax.swing.JPanel();
-        jButton4 = new javax.swing.JButton();
+        btnHelp = new javax.swing.JButton();
         txtID = new javax.swing.JTextField();
-        btnVerify = new javax.swing.JButton();
+        btnVerifySignIn = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         admin = new javax.swing.JPanel();
         btnEmployee = new javax.swing.JButton();
@@ -470,7 +497,7 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         createTransaction1 = new javax.swing.JPanel();
         txtEmployeeTransaction = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btnVerifyEmployeeForTransaction = new javax.swing.JButton();
         btnBrowse = new javax.swing.JButton();
         createTransaction3 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
@@ -530,9 +557,9 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         jLabel52 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         tblTransaction = new javax.swing.JTable();
-        jButton3 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnCheckTransaction = new javax.swing.JButton();
+        btnCreateTransaction = new javax.swing.JButton();
+        btnViewTransaction = new javax.swing.JButton();
         bank = new javax.swing.JPanel();
         btnNewBank = new javax.swing.JButton();
         btnUpdateBank1 = new javax.swing.JButton();
@@ -605,20 +632,20 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         lblDepartmentID = new javax.swing.JLabel();
         txtDepartmentID = new javax.swing.JTextField();
         btnDepartmentSaveToDatabase = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        btnBackToMain = new javax.swing.JButton();
         btnDepartment = new javax.swing.JButton();
         btnBank = new javax.swing.JButton();
         btnTransaction = new javax.swing.JButton();
         lblBackground = new javax.swing.JLabel();
         adminLogin = new javax.swing.JPanel();
-        jButton8 = new javax.swing.JButton();
-        btnLogin = new javax.swing.JButton();
+        btnBackFromAdminLogin = new javax.swing.JButton();
+        btnAdminLogin = new javax.swing.JButton();
         txtLoginPassword = new javax.swing.JPasswordField();
         txtLoginUsername = new javax.swing.JTextField();
         jLabel45 = new javax.swing.JLabel();
         user = new javax.swing.JPanel();
-        btnUserPayroll = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
+        btnUserCheckPayroll = new javax.swing.JButton();
+        btnBackFromUser = new javax.swing.JButton();
         cboUserMonth = new javax.swing.JComboBox<>();
         cboUserYear = new javax.swing.JComboBox<>();
         jLabel76 = new javax.swing.JLabel();
@@ -665,17 +692,17 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         main.setOpaque(false);
         main.setLayout(null);
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 70)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("!");
-        jButton4.setContentAreaFilled(false);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnHelp.setFont(new java.awt.Font("Tahoma", 1, 70)); // NOI18N
+        btnHelp.setForeground(new java.awt.Color(255, 255, 255));
+        btnHelp.setText("!");
+        btnHelp.setContentAreaFilled(false);
+        btnHelp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnHelpActionPerformed(evt);
             }
         });
-        main.add(jButton4);
-        jButton4.setBounds(0, 0, 90, 80);
+        main.add(btnHelp);
+        btnHelp.setBounds(0, 0, 90, 80);
 
         txtID.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         txtID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -688,20 +715,20 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         main.add(txtID);
         txtID.setBounds(547, 220, 210, 30);
 
-        btnVerify.setBorder(null);
-        btnVerify.setContentAreaFilled(false);
-        btnVerify.addActionListener(new java.awt.event.ActionListener() {
+        btnVerifySignIn.setBorder(null);
+        btnVerifySignIn.setContentAreaFilled(false);
+        btnVerifySignIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVerifyActionPerformed(evt);
+                btnVerifySignInActionPerformed(evt);
             }
         });
-        btnVerify.addKeyListener(new java.awt.event.KeyAdapter() {
+        btnVerifySignIn.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                btnVerifyKeyTyped(evt);
+                btnVerifySignInKeyTyped(evt);
             }
         });
-        main.add(btnVerify);
-        btnVerify.setBounds(580, 300, 160, 40);
+        main.add(btnVerifySignIn);
+        btnVerifySignIn.setBounds(580, 300, 160, 40);
 
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/payroll3.jpg"))); // NOI18N
         main.add(jLabel15);
@@ -738,10 +765,10 @@ public class FrmMainPayroll extends javax.swing.JFrame {
 
         jLabel5.setText("Employee ID");
 
-        jButton2.setText("Verify");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnVerifyEmployeeForTransaction.setText("Verify");
+        btnVerifyEmployeeForTransaction.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnVerifyEmployeeForTransactionActionPerformed(evt);
             }
         });
 
@@ -756,31 +783,31 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         createTransaction1.setLayout(createTransaction1Layout);
         createTransaction1Layout.setHorizontalGroup(
             createTransaction1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(createTransaction1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createTransaction1Layout.createSequentialGroup()
+                .addContainerGap(118, Short.MAX_VALUE)
                 .addGroup(createTransaction1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(createTransaction1Layout.createSequentialGroup()
-                        .addGap(137, 137, 137)
                         .addComponent(jLabel5)
                         .addGap(60, 60, 60)
                         .addComponent(txtEmployeeTransaction, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
                         .addComponent(btnBrowse))
                     .addGroup(createTransaction1Layout.createSequentialGroup()
-                        .addGap(326, 326, 326)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(529, Short.MAX_VALUE))
+                        .addGap(189, 189, 189)
+                        .addComponent(btnVerifyEmployeeForTransaction, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(108, 108, 108))
         );
         createTransaction1Layout.setVerticalGroup(
             createTransaction1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(createTransaction1Layout.createSequentialGroup()
-                .addGap(236, 236, 236)
+                .addGap(123, 123, 123)
                 .addGroup(createTransaction1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtEmployeeTransaction, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBrowse))
                 .addGap(36, 36, 36)
-                .addComponent(jButton2)
-                .addContainerGap(265, Short.MAX_VALUE))
+                .addComponent(btnVerifyEmployeeForTransaction)
+                .addContainerGap(158, Short.MAX_VALUE))
         );
 
         jPanel4.add(createTransaction1, "card2");
@@ -858,7 +885,7 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         createTransaction3Layout.setHorizontalGroup(
             createTransaction3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(createTransaction3Layout.createSequentialGroup()
-                .addGap(105, 105, 105)
+                .addGap(106, 106, 106)
                 .addGroup(createTransaction3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(createTransaction3Layout.createSequentialGroup()
                         .addGroup(createTransaction3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -897,22 +924,22 @@ public class FrmMainPayroll extends javax.swing.JFrame {
                                     .addComponent(jLabel41)
                                     .addComponent(jLabel49))
                                 .addGap(33, 33, 33)
-                                .addGroup(createTransaction3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblGajiKotorTransaction1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblTunjanganTransaction1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblTransactionTipeKaryawan1)))
+                                .addGroup(createTransaction3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lblGajiKotorTransaction1, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+                                    .addComponent(lblTunjanganTransaction1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblTransactionTipeKaryawan1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(lblTransactionTotalAbsent)))
                     .addGroup(createTransaction3Layout.createSequentialGroup()
                         .addGap(168, 168, 168)
                         .addComponent(btnTransactionBack)
                         .addGap(96, 96, 96)
                         .addComponent(btnTransactionConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(584, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         createTransaction3Layout.setVerticalGroup(
             createTransaction3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(createTransaction3Layout.createSequentialGroup()
-                .addGap(148, 148, 148)
+                .addGap(48, 48, 48)
                 .addGroup(createTransaction3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(lblNameTransaction1)
@@ -968,7 +995,7 @@ public class FrmMainPayroll extends javax.swing.JFrame {
                 .addGroup(createTransaction3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnTransactionConfirm)
                     .addComponent(btnTransactionBack))
-                .addContainerGap(211, Short.MAX_VALUE))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
 
         jPanel4.add(createTransaction3, "card4");
@@ -1028,9 +1055,9 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         createTransaction2Layout.setHorizontalGroup(
             createTransaction2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(createTransaction2Layout.createSequentialGroup()
+                .addGap(97, 97, 97)
                 .addGroup(createTransaction2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(createTransaction2Layout.createSequentialGroup()
-                        .addGap(73, 73, 73)
                         .addGroup(createTransaction2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel36)
                             .addComponent(jLabel14)
@@ -1052,7 +1079,7 @@ public class FrmMainPayroll extends javax.swing.JFrame {
                                     .addComponent(txtTransactionTotalAbsent, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblNameTransaction, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblDepartmentTransaction, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblPositionTransaction, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(lblPositionTransaction, javax.swing.GroupLayout.Alignment.LEADING))
                                 .addGap(93, 93, 93)
                                 .addGroup(createTransaction2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel10)
@@ -1060,18 +1087,18 @@ public class FrmMainPayroll extends javax.swing.JFrame {
                                     .addComponent(jLabel51))
                                 .addGap(53, 53, 53)
                                 .addGroup(createTransaction2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lblGajiKotorTransaction, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
                                     .addComponent(lblTunjanganTransaction, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblGajiKotorTransaction, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblTransactionTipeKaryawan)))))
+                                    .addComponent(lblTransactionTipeKaryawan, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(createTransaction2Layout.createSequentialGroup()
-                        .addGap(269, 269, 269)
+                        .addGap(196, 196, 196)
                         .addComponent(btnTransactionNext, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(637, Short.MAX_VALUE))
+                .addContainerGap(96, Short.MAX_VALUE))
         );
         createTransaction2Layout.setVerticalGroup(
             createTransaction2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(createTransaction2Layout.createSequentialGroup()
-                .addGap(132, 132, 132)
+                .addGap(51, 51, 51)
                 .addGroup(createTransaction2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(lblGajiKotorTransaction)
@@ -1079,10 +1106,10 @@ public class FrmMainPayroll extends javax.swing.JFrame {
                     .addComponent(lblNameTransaction))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(createTransaction2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTunjanganTransaction)
                     .addComponent(jLabel11)
                     .addComponent(jLabel7)
-                    .addComponent(lblDepartmentTransaction))
+                    .addComponent(lblDepartmentTransaction)
+                    .addComponent(lblTunjanganTransaction, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(createTransaction2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
@@ -1105,7 +1132,7 @@ public class FrmMainPayroll extends javax.swing.JFrame {
                     .addComponent(txtTransactionDeduction, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(62, 62, 62)
                 .addComponent(btnTransactionNext)
-                .addContainerGap(224, Short.MAX_VALUE))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
 
         jPanel4.add(createTransaction2, "card4");
@@ -1147,10 +1174,10 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         });
         jScrollPane5.setViewportView(tblTransaction);
 
-        jButton3.setText("Check Transaction");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnCheckTransaction.setText("Check Transaction");
+        btnCheckTransaction.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnCheckTransactionActionPerformed(evt);
             }
         });
 
@@ -1170,49 +1197,50 @@ public class FrmMainPayroll extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(cboViewTransactionYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(107, 107, 107)
-                        .addComponent(jButton3))
+                        .addComponent(btnCheckTransaction))
                     .addGroup(viewTransactionLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 655, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(445, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         viewTransactionLayout.setVerticalGroup(
             viewTransactionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(viewTransactionLayout.createSequentialGroup()
-                .addGap(110, 110, 110)
+                .addGap(24, 24, 24)
                 .addGroup(viewTransactionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cboViewTransactionMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel50)
                     .addComponent(jLabel52)
                     .addComponent(cboViewTransactionYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
+                    .addComponent(btnCheckTransaction))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(173, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         jPanel4.add(viewTransaction, "card3");
 
         transaction.add(jPanel4);
-        jPanel4.setBounds(0, 0, 1120, 590);
+        jPanel4.setBounds(0, 90, 680, 370);
 
-        jButton9.setContentAreaFilled(false);
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        btnCreateTransaction.setContentAreaFilled(false);
+        btnCreateTransaction.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnCreateTransaction.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                btnCreateTransactionActionPerformed(evt);
             }
         });
-        transaction.add(jButton9);
-        jButton9.setBounds(78, 20, 39, 45);
+        transaction.add(btnCreateTransaction);
+        btnCreateTransaction.setBounds(78, 20, 39, 45);
 
-        jButton1.setContentAreaFilled(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnViewTransaction.setContentAreaFilled(false);
+        btnViewTransaction.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnViewTransactionActionPerformed(evt);
             }
         });
-        transaction.add(jButton1);
-        jButton1.setBounds(237, 20, 62, 40);
+        transaction.add(btnViewTransaction);
+        btnViewTransaction.setBounds(237, 20, 60, 40);
 
         jPanel2.add(transaction, "card3");
 
@@ -1803,14 +1831,14 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         admin.add(jPanel2);
         jPanel2.setBounds(170, 0, 710, 500);
 
-        jButton7.setContentAreaFilled(false);
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        btnBackToMain.setContentAreaFilled(false);
+        btnBackToMain.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                btnBackToMainActionPerformed(evt);
             }
         });
-        admin.add(jButton7);
-        jButton7.setBounds(70, 20, 50, 50);
+        admin.add(btnBackToMain);
+        btnBackToMain.setBounds(70, 20, 50, 50);
 
         btnDepartment.setContentAreaFilled(false);
         btnDepartment.addActionListener(new java.awt.event.ActionListener() {
@@ -1847,28 +1875,28 @@ public class FrmMainPayroll extends javax.swing.JFrame {
 
         adminLogin.setLayout(null);
 
-        jButton8.setContentAreaFilled(false);
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        btnBackFromAdminLogin.setContentAreaFilled(false);
+        btnBackFromAdminLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                btnBackFromAdminLoginActionPerformed(evt);
             }
         });
-        adminLogin.add(jButton8);
-        jButton8.setBounds(20, 20, 50, 50);
+        adminLogin.add(btnBackFromAdminLogin);
+        btnBackFromAdminLogin.setBounds(20, 20, 50, 50);
 
-        btnLogin.setContentAreaFilled(false);
-        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+        btnAdminLogin.setContentAreaFilled(false);
+        btnAdminLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoginActionPerformed(evt);
+                btnAdminLoginActionPerformed(evt);
             }
         });
-        btnLogin.addKeyListener(new java.awt.event.KeyAdapter() {
+        btnAdminLogin.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                btnLoginKeyReleased(evt);
+                btnAdminLoginKeyReleased(evt);
             }
         });
-        adminLogin.add(btnLogin);
-        btnLogin.setBounds(580, 330, 160, 30);
+        adminLogin.add(btnAdminLogin);
+        btnAdminLogin.setBounds(580, 330, 160, 30);
 
         txtLoginPassword.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         txtLoginPassword.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -1901,23 +1929,23 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         user.setOpaque(false);
         user.setLayout(null);
 
-        btnUserPayroll.setText("Check Payroll");
-        btnUserPayroll.addActionListener(new java.awt.event.ActionListener() {
+        btnUserCheckPayroll.setText("Check Payroll");
+        btnUserCheckPayroll.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUserPayrollbtnPayrollActionPerformed(evt);
+                btnUserCheckPayrollbtnPayrollActionPerformed(evt);
             }
         });
-        user.add(btnUserPayroll);
-        btnUserPayroll.setBounds(500, 120, 160, 23);
+        user.add(btnUserCheckPayroll);
+        btnUserCheckPayroll.setBounds(500, 120, 160, 23);
 
-        jButton12.setContentAreaFilled(false);
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
+        btnBackFromUser.setContentAreaFilled(false);
+        btnBackFromUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12jButton10ActionPerformed(evt);
+                btnBackFromUserjButton10ActionPerformed(evt);
             }
         });
-        user.add(jButton12);
-        jButton12.setBounds(20, 20, 50, 50);
+        user.add(btnBackFromUser);
+        btnBackFromUser.setBounds(20, 20, 50, 50);
 
         cboUserMonth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
         user.add(cboUserMonth);
@@ -2032,9 +2060,9 @@ public class FrmMainPayroll extends javax.swing.JFrame {
                         .addGroup(pnlPayrollLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblUserBulanTahun, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblUserJabatan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblUserDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblUserNama, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblUserTanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lblUserTanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblUserDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(pnlPayrollLayout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addGroup(pnlPayrollLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -2152,16 +2180,16 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnVerifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerifyActionPerformed
+    private void btnVerifySignInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerifySignInActionPerformed
         verifyButtonPress();
-    }//GEN-LAST:event_btnVerifyActionPerformed
+    }//GEN-LAST:event_btnVerifySignInActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void btnBackToMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackToMainActionPerformed
         changeMainLayout(adminLogin);
         txtEmployeeTransaction.setText("");
         txtID.setText("");
         foundEmployee = false;
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_btnBackToMainActionPerformed
 
     private void btnEmployeeNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeeNewActionPerformed
         DefaultTableModel tableModel = (DefaultTableModel) tblEmployee.getModel();
@@ -2204,18 +2232,7 @@ public class FrmMainPayroll extends javax.swing.JFrame {
             Object data[] = {id, name, nik};
             tableModel.addRow(data);
 
-            txtEmployeeID.setText("");
-            txtEmployeeName.setText("");
-            txtEmployeeNik.setText("");
-            txtEmployeeTempatLahir.setText("");
-            txtEmployeeTangalLahir.setText("");
-            txtEmployeeAlamat.setText("");
-            txtEmployeeNoHP.setText("");
-            txtEmployeeEmail.setText("");
-            txtEmployeeTanggalMasuk.setText("");
-            txtEmployeeGajiKotor.setText("");
-            txtEmployeeTunjangan.setText("");
-            txtEmployeeNoRekening.setText("");
+            emptyEmployeeField();
         }
     }//GEN-LAST:event_btnEmployeeNewActionPerformed
 
@@ -2281,18 +2298,7 @@ public class FrmMainPayroll extends javax.swing.JFrame {
                 tableModel.setValueAt(employee.getId(), row, 0);
                 tableModel.setValueAt(employee.getName(), row, 1);
 
-                txtEmployeeID.setText("");
-                txtEmployeeName.setText("");
-                txtEmployeeNik.setText("");
-                txtEmployeeTempatLahir.setText("");
-                txtEmployeeTangalLahir.setText("");
-                txtEmployeeAlamat.setText("");
-                txtEmployeeNoHP.setText("");
-                txtEmployeeEmail.setText("");
-                txtEmployeeTanggalMasuk.setText("");
-                txtEmployeeGajiKotor.setText("");
-                txtEmployeeTunjangan.setText("");
-                txtEmployeeNoRekening.setText("");
+                emptyEmployeeField();
             }
         } else {
             JOptionPane.showMessageDialog(this, "Please select the data", "App Information", 1);
@@ -2305,6 +2311,7 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         if (tblEmployee.getSelectedRow() >= 0) {
             tableModel.removeRow(row);
             employeeList.remove(row);
+            emptyEmployeeField();
         } else {
             JOptionPane.showMessageDialog(this, "Please select the data", "App Information", 1);
         }
@@ -2314,22 +2321,26 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         changeMainSubLayout(department);
         changeTransactionImage(1);
         tableDepartmentInitData();
+        emptyDepartmentField();
     }//GEN-LAST:event_btnDepartmentActionPerformed
 
     private void btnEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeeActionPerformed
         changeMainSubLayout(employee);
         changeTransactionImage(1);
         tableEmployeeInitData();
+        emptyEmployeeField();
     }//GEN-LAST:event_btnEmployeeActionPerformed
 
     private void btnBankActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBankActionPerformed
         changeMainSubLayout(bank);
         changeTransactionImage(1);
         tableBankInitData();
+        emptyBankField();
     }//GEN-LAST:event_btnBankActionPerformed
 
     private void btnTransactionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransactionActionPerformed
         changeMainSubLayout(transaction);
+        changeTransactionLayout(createTransaction1);
         changeTransactionImage(2);
     }//GEN-LAST:event_btnTransactionActionPerformed
 
@@ -2348,10 +2359,7 @@ public class FrmMainPayroll extends javax.swing.JFrame {
                 txtAlamatBank.getText()};
             tableModel.addRow(data);
 
-            txtIdBank.setText("");
-            txtNamaBank.setText("");
-            txtCabangBank.setText("");
-            txtAlamatBank.setText("");
+            emptyBankField();
         }
     }//GEN-LAST:event_btnNewBankActionPerformed
 
@@ -2365,10 +2373,7 @@ public class FrmMainPayroll extends javax.swing.JFrame {
                 tableModel.setValueAt(txtCabangBank.getText().toUpperCase(), row, 2);
                 tableModel.setValueAt(txtAlamatBank.getText(), row, 3);
 
-                txtIdBank.setText("");
-                txtNamaBank.setText("");
-                txtCabangBank.setText("");
-                txtAlamatBank.setText("");
+                emptyBankField();
             }
 
         } else {
@@ -2382,6 +2387,7 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         if (tblBank.getSelectedRow() >= 0) {
 
             tableModel.removeRow(row);
+            emptyBankField();
         } else {
             JOptionPane.showMessageDialog(this, "Please select the data", "App Information", 1);
         }
@@ -2397,8 +2403,7 @@ public class FrmMainPayroll extends javax.swing.JFrame {
                 txtDepartmentName.getText().toUpperCase()};
             DefaultTableModel tableModel = (DefaultTableModel) tblDepartment.getModel();
             tableModel.addRow(data);
-            txtDepartmentID.setText("");
-            txtDepartmentName.setText("");
+            emptyDepartmentField();
         }
     }//GEN-LAST:event_btnDepartmentAddActionPerformed
 
@@ -2408,8 +2413,7 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         if (tblDepartment.getSelectedRow() >= 0) {
             DefaultTableModel tableModel = (DefaultTableModel) tblDepartment.getModel();
             tableModel.removeRow(row);
-            txtDepartmentID.setText("");
-            txtDepartmentName.setText("");
+            emptyDepartmentField();
         } else {
             JOptionPane.showMessageDialog(this, "Please Select Data", "App Information", 1);
         }
@@ -2422,6 +2426,7 @@ public class FrmMainPayroll extends javax.swing.JFrame {
             DefaultTableModel tableModel = (DefaultTableModel) tblDepartment.getModel();
             tableModel.setValueAt(txtDepartmentID.getText().toUpperCase(), row, 0);
             tableModel.setValueAt(txtDepartmentName.getText().toUpperCase(), row, 1);
+            emptyDepartmentField();
         } else {
             JOptionPane.showMessageDialog(this, "Please Select Data", "App Information", 1);
         }
@@ -2541,29 +2546,29 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cboTahunActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnVerifyEmployeeForTransactionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerifyEmployeeForTransactionActionPerformed
         verifyTransaction();
         if (foundEmployee == true) {
             changeTransactionLayout(createTransaction2);
         } else {
             JOptionPane.showMessageDialog(this, "No Such User", "App Info", 2);
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnVerifyEmployeeForTransactionActionPerformed
 
-    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+    private void btnAdminLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminLoginActionPerformed
         loginAdmin();
-    }//GEN-LAST:event_btnLoginActionPerformed
+    }//GEN-LAST:event_btnAdminLoginActionPerformed
 
     private void txtLoginUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLoginUsernameActionPerformed
         loginAdmin();
     }//GEN-LAST:event_txtLoginUsernameActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void btnBackFromAdminLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackFromAdminLoginActionPerformed
         txtLoginUsername.setText("");
         txtLoginPassword.setText("");
         txtID.setText("");
         changeMainLayout(main);
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_btnBackFromAdminLoginActionPerformed
 
     private void btnTransactionNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransactionNextActionPerformed
 
@@ -2594,10 +2599,10 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         changeTransactionLayout(createTransaction2);
     }//GEN-LAST:event_btnTransactionBackActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void btnCreateTransactionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateTransactionActionPerformed
         changeTransactionLayout(createTransaction1);
         txtEmployeeTransaction.setText("");
-    }//GEN-LAST:event_jButton9ActionPerformed
+    }//GEN-LAST:event_btnCreateTransactionActionPerformed
 
     private void btnTransactionConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransactionConfirmActionPerformed
         int x = SUtility.msq(this, "Are you sure?");
@@ -2651,25 +2656,25 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnTransactionConfirmActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnViewTransactionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewTransactionActionPerformed
         changeTransactionLayout(viewTransaction);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnViewTransactionActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnCheckTransactionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckTransactionActionPerformed
         tableTransactionInitData(cboViewTransactionMonth.getSelectedItem().toString(), cboViewTransactionYear.getSelectedItem().toString());
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnCheckTransactionActionPerformed
 
-    private void btnUserPayrollbtnPayrollActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserPayrollbtnPayrollActionPerformed
+    private void btnUserCheckPayrollbtnPayrollActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserCheckPayrollbtnPayrollActionPerformed
         checkpayroll();
-    }//GEN-LAST:event_btnUserPayrollbtnPayrollActionPerformed
+    }//GEN-LAST:event_btnUserCheckPayrollbtnPayrollActionPerformed
 
-    private void jButton12jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12jButton10ActionPerformed
+    private void btnBackFromUserjButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackFromUserjButton10ActionPerformed
         changeMainLayout(main);
-    }//GEN-LAST:event_jButton12jButton10ActionPerformed
+    }//GEN-LAST:event_btnBackFromUserjButton10ActionPerformed
 
-    private void btnVerifyKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnVerifyKeyTyped
+    private void btnVerifySignInKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnVerifySignInKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnVerifyKeyTyped
+    }//GEN-LAST:event_btnVerifySignInKeyTyped
 
     private void btnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowseActionPerformed
         executeBrowse();
@@ -2681,14 +2686,14 @@ public class FrmMainPayroll extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnPdfActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHelpActionPerformed
         DlgInfo info = new DlgInfo(this, true);
         info.setVisible(true);
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btnHelpActionPerformed
 
-    private void btnLoginKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnLoginKeyReleased
+    private void btnAdminLoginKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnAdminLoginKeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnLoginKeyReleased
+    }//GEN-LAST:event_btnAdminLoginKeyReleased
 
     private void txtLoginPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLoginPasswordActionPerformed
         loginAdmin();
@@ -2745,6 +2750,9 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         if (foundEmployee == true) {
             foundEmployee = false;
             changeMainLayout(user);
+            cboUserMonth.setSelectedIndex(0);
+            cboUserYear.setSelectedIndex(0);
+            lblTransactionId.setText("");
         } else if (txtID.getText().trim().equals("exit")) {
             System.exit(0);
         } else if (txtID.getText().trim().equals("admin")) {
@@ -2813,8 +2821,14 @@ public class FrmMainPayroll extends javax.swing.JFrame {
     private javax.swing.JPanel admin;
     private javax.swing.JPanel adminLogin;
     private javax.swing.JPanel bank;
+    private javax.swing.JButton btnAdminLogin;
+    private javax.swing.JButton btnBackFromAdminLogin;
+    private javax.swing.JButton btnBackFromUser;
+    private javax.swing.JButton btnBackToMain;
     private javax.swing.JButton btnBank;
     private javax.swing.JButton btnBrowse;
+    private javax.swing.JButton btnCheckTransaction;
+    private javax.swing.JButton btnCreateTransaction;
     private javax.swing.JButton btnDeleteBank;
     private javax.swing.JButton btnDepartment;
     private javax.swing.JButton btnDepartmentAdd;
@@ -2826,7 +2840,7 @@ public class FrmMainPayroll extends javax.swing.JFrame {
     private javax.swing.JButton btnEmployeeNew;
     private javax.swing.JButton btnEmployeeSaveToDatabase;
     private javax.swing.JButton btnEmployeeUpdate;
-    private javax.swing.JButton btnLogin;
+    private javax.swing.JButton btnHelp;
     private javax.swing.JButton btnNewBank;
     private javax.swing.JButton btnPdf;
     private javax.swing.JButton btnSaveToDatabaseBank;
@@ -2835,8 +2849,10 @@ public class FrmMainPayroll extends javax.swing.JFrame {
     private javax.swing.JButton btnTransactionConfirm;
     private javax.swing.JButton btnTransactionNext;
     private javax.swing.JButton btnUpdateBank1;
-    private javax.swing.JButton btnUserPayroll;
-    private javax.swing.JButton btnVerify;
+    private javax.swing.JButton btnUserCheckPayroll;
+    private javax.swing.JButton btnVerifyEmployeeForTransaction;
+    private javax.swing.JButton btnVerifySignIn;
+    private javax.swing.JButton btnViewTransaction;
     private javax.swing.JComboBox<String> cboBulan;
     private javax.swing.JComboBox<String> cboEmployeeAgama;
     private javax.swing.JComboBox<String> cboEmployeeIdBank;
@@ -2856,14 +2872,6 @@ public class FrmMainPayroll extends javax.swing.JFrame {
     private javax.swing.JPanel department;
     private javax.swing.JPanel employee;
     private javax.swing.JPanel empty;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
