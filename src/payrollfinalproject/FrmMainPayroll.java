@@ -2153,7 +2153,7 @@ public class FrmMainPayroll extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVerifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerifyActionPerformed
-       verifyButtonPress();
+        verifyButtonPress();
     }//GEN-LAST:event_btnVerifyActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -2334,7 +2334,7 @@ public class FrmMainPayroll extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTransactionActionPerformed
 
     private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
-       verifyButtonPress();
+        verifyButtonPress();
     }//GEN-LAST:event_txtIDActionPerformed
 
 
@@ -2682,7 +2682,7 @@ public class FrmMainPayroll extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPdfActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        DlgInfo info=new DlgInfo(this,true);
+        DlgInfo info = new DlgInfo(this, true);
         info.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -2738,25 +2738,28 @@ public class FrmMainPayroll extends javax.swing.JFrame {
             }
         });
     }
-    
-    private void verifyButtonPress(){
+
+    private void verifyButtonPress() {
         pnlPayroll.setVisible(false);
         verifyEmployee();
         if (foundEmployee == true) {
-            foundEmployee=false;
+            foundEmployee = false;
             changeMainLayout(user);
-        }else if (txtID.getText().equals("exit")) {
+        } else if (txtID.getText().trim().equals("exit")) {
             System.exit(0);
-        } else if (txtID.getText().equals("admin")) {
+        } else if (txtID.getText().trim().equals("admin")) {
             changeMainLayout(adminLogin);
+        } else if (txtID.getText().trim().equals("about")) {
+            DlgAbout about = new DlgAbout(this, true);
+            about.setVisible(true);
         } else {
-            JOptionPane.showMessageDialog(this, "No Such User", "App Info", 2);
+            JOptionPane.showMessageDialog(this, "No Such User/command", "App Info", 2);
         }
         btnPdf.setVisible(false);
     }
-    
-    private  void loginAdmin(){
-            if (!txtLoginUsername.getText().trim().equals("admin")) {
+
+    private void loginAdmin() {
+        if (!txtLoginUsername.getText().trim().equals("admin")) {
             JOptionPane.showMessageDialog(this, "Username don't match", "App Info", 2);
         } else if (!txtLoginPassword.getText().trim().equals("admin")) {
             JOptionPane.showMessageDialog(this, "Password don't match", "App Info", 2);
