@@ -654,6 +654,7 @@ public class FrmMainPayroll extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("Payroll");
         setPreferredSize(new java.awt.Dimension(1600, 900));
         setResizable(false);
         getContentPane().setLayout(null);
@@ -877,13 +878,10 @@ public class FrmMainPayroll extends javax.swing.JFrame {
                                 .addComponent(lblTransactionBulan)))
                         .addGap(33, 33, 33)
                         .addGroup(createTransaction3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(createTransaction3Layout.createSequentialGroup()
-                                .addGroup(createTransaction3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblTransactionTakeHomePay)
-                                    .addComponent(lblTransactionDeduction, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblTransactionBank)
-                                    .addComponent(lblTransactionNoRekening))
-                                .addGap(166, 166, 166))
+                            .addComponent(lblTransactionTakeHomePay)
+                            .addComponent(lblTransactionDeduction, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblTransactionBank)
+                            .addComponent(lblTransactionNoRekening)
                             .addGroup(createTransaction3Layout.createSequentialGroup()
                                 .addComponent(jLabel44)
                                 .addGap(18, 18, 18)
@@ -908,8 +906,7 @@ public class FrmMainPayroll extends javax.swing.JFrame {
                         .addGap(168, 168, 168)
                         .addComponent(btnTransactionBack)
                         .addGap(96, 96, 96)
-                        .addComponent(btnTransactionConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnTransactionConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(584, Short.MAX_VALUE))
         );
         createTransaction3Layout.setVerticalGroup(
@@ -1648,11 +1645,12 @@ public class FrmMainPayroll extends javax.swing.JFrame {
                             .addComponent(jLabel29)
                             .addComponent(cboEmployeeTipeKaryawan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel17)
-                            .addComponent(txtEmployeeTempatLahir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel30)
-                            .addComponent(txtEmployeeTanggalMasuk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txtEmployeeTempatLahir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel30)
+                                .addComponent(txtEmployeeTanggalMasuk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel35)
